@@ -1,12 +1,8 @@
 import React from 'react';
 
-import Cart from '../Screens/Cart';
-import Home from '../Screens/Home';
-
-import Profile from '../Screens/Profile';
-
 import {createStackNavigator} from '@react-navigation/stack';
 import TabNavigator from './TabNavigator';
+
 import Signin from '../Screens/SignIn';
 import SignUp from '../Screens/SignUp';
 
