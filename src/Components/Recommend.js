@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View, FlatList } from "react-native";
-import RecommendResult from "./RecommendResult";
+import RecommendItem from "./RecommendItem";
 
 const Recommend = ({ title, result }) => {
   return (
@@ -11,7 +11,7 @@ const Recommend = ({ title, result }) => {
         data={result}
         keyExtractor={result => result.id.toString()}
         horizontal
-        renderItem={({ item }) => <RecommendResult item={item} />}
+        renderItem={({ item }) => <RecommendItem item={item} />}
       />
     </View>
   );

@@ -1,34 +1,36 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+
 import Icon from "react-native-ionicons";
 
 const CategoriComponent = ({ name, iconname }) => {
   return (
     <TouchableOpacity>
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "flex-end",
-          margin: 15,
-          alignItems: "center",
-          borderBottomWidth: 1,
-          borderBottomColor: "red",
-        }}
-      >
-        <Text
-          style={{
-            fontFamily: "Sans",
-            fontSize: 18,
-          }}
-        >
-          {name}
-        </Text>
+      <View style={styles.View}>
+        <Text style={styles.Text}>{name}</Text>
 
-        <Icon name={iconname} style={{ marginLeft: 30 }} />
+        <Icon name={iconname} style={styles.Icon} />
       </View>
     </TouchableOpacity>
   );
 };
+
 export default CategoriComponent;
-const styles = StyleSheet.create({});
+
+const styles = StyleSheet.create({
+  View: {
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    margin: 15,
+    alignItems: "center",
+    borderBottomWidth: 1,
+    borderBottomColor: "#ff8040",
+  },
+  Text: {
+    fontFamily: "Sans",
+    fontSize: 18,
+  },
+  Icon: {
+    marginLeft: 30,
+  },
+});

@@ -2,13 +2,23 @@ import React from "react";
 import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-const RecommendResult = ({ item }) => {
+const RecommendItem = ({ item }) => {
   const navigation = useNavigation();
   return (
     <View>
       <View style={styles.Text}>
         <Text>{item.name.slice(0, 8)}...</Text>
-        <TouchableOpacity onPress={() => navigation.navigate("SignIn")}>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate("RecommendResult", {
+              id: item.id,
+              name: item.name,
+              price: item.price,
+              detail: item.detail,
+              data: item,
+              picCover: item.picCover.url,
+            })}
+        >
           <Image
             source={{
               uri: `http://192.168.1.5:1337${item.picCover.url}`,
@@ -20,7 +30,7 @@ const RecommendResult = ({ item }) => {
     </View>
   );
 };
-export default RecommendResult;
+export default RecommendItem;
 const styles = StyleSheet.create({
   FlatList: {
     alignItems: "center",
