@@ -1,19 +1,8 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  FlatList,
-  Image,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, Text, View, FlatList } from "react-native";
+import RecommendResult from "./RecommendResult";
 
 const Recommend = ({ title, result }) => {
-  const picurl = result.map(res => {
-    return res.picCover.url;
-  });
-  console.log(picurl);
-
   return (
     <View>
       <Text style={styles.text}>{title}</Text>
@@ -22,31 +11,20 @@ const Recommend = ({ title, result }) => {
         data={result}
         keyExtractor={result => result.id.toString()}
         horizontal
-        renderItem={({ item }) => {
-          return (
-            <View style={styles.FlatList}>
-              <Text>{item.name.slice(0, 8)}...</Text>
-              <TouchableOpacity>
-                <Image
-                  style={styles.image}
-                  // source={{
-                  //   uri: `http://192.168.1.3:1337${pic}`,
-                  // }}
-                />
-              </TouchableOpacity>
-            </View>
-          );
-        }}
+        renderItem={({ item }) => <RecommendResult item={item} />}
       />
     </View>
   );
 };
+
 export default Recommend;
 
 const styles = StyleSheet.create({
   text: {
     fontSize: 20,
-    fontWeight: "bold",
+    //fontWeight: "bold",
+    fontFamily: "Sans",
+    marginRight: 12,
   },
   FlatList: {
     alignItems: "center",

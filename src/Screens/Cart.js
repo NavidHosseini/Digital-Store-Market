@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 export default function Cart() {
   return (
     <View>
-      <Text>card screen</Text>
+      <Text>سبد خرید شما </Text>
     </View>
   );
 }

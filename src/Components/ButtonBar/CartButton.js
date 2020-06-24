@@ -11,7 +11,7 @@ const CardButton = () => {
   return (
     <View>
       <TouchableOpacity onPress={() => navigation.navigate("Cart")}>
-        <Icon name="cart" />
+        <Icon name="cart" style={{ color: "#ba3a00" }} />
       </TouchableOpacity>
     </View>
   );

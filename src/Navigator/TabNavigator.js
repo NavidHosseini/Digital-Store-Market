@@ -20,14 +20,14 @@ const TabNavigator = () => {
       initialRouteName="Home"
       tabBarOptions={{
         style: {
-          backgroundColor: "#ffb8b8",
+          backgroundColor: "#fff0e1",
         },
       }}
     >
       <Tab.Screen
         name="Profile"
         options={{
-          tabBarLabel: "profile",
+          tabBarLabel: "پروفایل",
 
           tabBarIcon: () => {
             return <ProfileButton />;
@@ -40,7 +40,7 @@ const TabNavigator = () => {
       <Tab.Screen
         name="Home"
         options={{
-          tabBarLabel: "home",
+          tabBarLabel: "منو اصلی",
           tabBarIcon: () => {
             return <HomeButton />;
           },
@@ -52,7 +52,7 @@ const TabNavigator = () => {
       <Tab.Screen
         name="Categori"
         options={{
-          tabBarLabel: "Categori",
+          tabBarLabel: "دسته یندی",
           tabBarIcon: () => {
             return <CategoriButton />;
           },
@@ -64,7 +64,7 @@ const TabNavigator = () => {
       <Tab.Screen
         name="Cart"
         options={{
-          tabBarLabel: "Cart",
+          tabBarLabel: "سبد خرید",
           tabBarIcon: () => {
             return <CartButton />;
           },

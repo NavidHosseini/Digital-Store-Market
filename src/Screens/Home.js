@@ -8,7 +8,7 @@ const Home = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch("http://192.168.1.3:1337/digital-store-markets")
+    fetch("http://192.168.1.5:1337/digital-store-markets")
       .then(response => response.json())
       .then(json => setData(json))
       .catch(error => console.error(error))
@@ -20,7 +20,6 @@ const Home = () => {
       return result.Type === Type;
     });
   };
-  // console.log(filterResults("mobile"));
 
   return (
     <View style={{ flex: 1, padding: 10 }}>
@@ -31,20 +30,22 @@ const Home = () => {
       ) : (
         <View style={styles.background}>
           <View style={styles.welcomeStyle}>
-            <Text style={styles.welcomeTitle}>Welcome to Digital Shoping</Text>
+            <Text style={styles.welcomeTitle}>
+              به فروشگاه دیجیتال خوش امدید
+            </Text>
           </View>
           <ScrollView>
             <View style={{ marginBottom: 100 }}>
               <Recommend
-                title="Recommend Cell Phones"
+                title="موبایل های پیشنهادی ..."
                 result={filterResults("Mobile")}
               />
               <Recommend
-                title="Recommend Laptops"
+                title="لپ تاپ های پیشنهادی ..."
                 result={filterResults("LapTop")}
               />
               <Recommend
-                title="Recommend Cameras"
+                title="دوربین های پیشنهادی ..."
                 result={filterResults("Camera")}
               />
             </View>
@@ -58,9 +59,10 @@ export default Home;
 
 const styles = StyleSheet.create({
   welcomeTitle: {
-    fontWeight: "bold",
+    //fontWeight: "bold",
     fontSize: 20,
     color: "#fff",
+    fontFamily: "Sans",
   },
   welcomeStyle: {
     alignItems: "center",

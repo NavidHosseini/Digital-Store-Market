@@ -10,8 +10,8 @@ const CategoriButton = () => {
 
   return (
     <View>
-      <TouchableOpacity onPress={() => navigation.navigate("Home")}>
-        <Icon name="list" />
+      <TouchableOpacity onPress={() => navigation.navigate("Categori")}>
+        <Icon name="list" style={{ color: "#00bcbc" }} />
       </TouchableOpacity>
     </View>
   );

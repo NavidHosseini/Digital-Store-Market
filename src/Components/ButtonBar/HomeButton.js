@@ -11,7 +11,7 @@ const HomeButton = () => {
   return (
     <View>
       <TouchableOpacity onPress={() => navigation.navigate("Home")}>
-        <Icon name="home" />
+        <Icon name="home" style={{ color: "#804040" }} />
       </TouchableOpacity>
     </View>
   );

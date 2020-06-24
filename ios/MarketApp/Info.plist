@@ -56,6 +56,9 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Ionicons.ttf</string>
+		<string>IRANSans.ttf</string>
+		<string>IRANSansMobile.ttf</string>
+		<string>Sans.ttf</string>
 	</array>
 </dict>
 </plist>

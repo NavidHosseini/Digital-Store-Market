@@ -11,7 +11,7 @@ const ProfileButton = () => {
   return (
     <View>
       <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
-        <Icon name="person" color="#2a2a2a" />
+        <Icon name="person" color="#004991" />
       </TouchableOpacity>
     </View>
   );
