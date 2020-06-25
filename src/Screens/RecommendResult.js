@@ -3,7 +3,7 @@ import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {useRoute} from '@react-navigation/native';
 
-const RecommendResult = () => {
+const RecommendResult = ({navigation}) => {
   const route = useRoute();
 
   const data = route.params.data;
@@ -24,7 +24,7 @@ const RecommendResult = () => {
           <Text style={styles.TextStyle}>قیمت :{data.price} تومان </Text>
           <Text style={styles.TextStyle}>توضیحات :</Text>
           <Text style={styles.TextStyle}>{data.detail}</Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
             <View
               style={{
                 alignItems: 'center',
@@ -34,7 +34,7 @@ const RecommendResult = () => {
                 marginBottom: 40,
               }}>
               <Text style={{fontFamily: 'Sans', color: '#fff', fontSize: 17}}>
-                اصافه به سبد خرید
+                اضافه به سبد خرید
               </Text>
             </View>
           </TouchableOpacity>

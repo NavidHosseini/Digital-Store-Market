@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react';
 
-import RecommendResult from "../Screens/RecommendResult";
-import Signin from "../Screens/SignIn";
+import RecommendResult from '../Screens/RecommendResult';
+import Signin from '../Screens/SignIn';
 
-import SignUp from "../Screens/SignUp";
-
-import TabNavigator from "./TabNavigator";
-import { createStackNavigator } from "@react-navigation/stack";
+import SignUp from '../Screens/SignUp';
+import CategoriResult from '../Screens/CategoriResult';
+import TabNavigator from './TabNavigator';
+import {createStackNavigator} from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
 
@@ -16,21 +16,23 @@ const SwitchNavigator = () => {
       <Stack.Screen
         name="Home"
         options={{
-          title: "Digital Market",
-          headerTitleAlign: "center",
+          title: 'Digital Market',
+          headerTitleAlign: 'center',
           headerShown: false,
-        }}
-      >
-        {props => <TabNavigator {...props} />}
+        }}>
+        {(props) => <TabNavigator {...props} />}
       </Stack.Screen>
-      <Stack.Screen name="SignIn">
-        {props => <Signin {...props} />}
+      <Stack.Screen name="SignIn" options={{headerShown: false}}>
+        {(props) => <Signin {...props} />}
       </Stack.Screen>
-      <Stack.Screen name="SignUp">
-        {props => <SignUp {...props} />}
+      <Stack.Screen name="SignUp" options={{headerShown: false}}>
+        {(props) => <SignUp {...props} />}
       </Stack.Screen>
-      <Stack.Screen name="RecommendResult">
-        {props => <RecommendResult {...props} />}
+      <Stack.Screen name="RecommendResult" options={{headerShown: false}}>
+        {(props) => <RecommendResult {...props} />}
+      </Stack.Screen>
+      <Stack.Screen name="CategoriResult" options={{headerShown: false}}>
+        {(props) => <CategoriResult {...props} />}
       </Stack.Screen>
     </Stack.Navigator>
   );
