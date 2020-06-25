@@ -1,17 +1,17 @@
-import React from "react";
-import { View, TouchableOpacity } from "react-native";
+import React from 'react';
+import {View, TouchableOpacity} from 'react-native';
 
-import Icon from "react-native-ionicons";
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import { useNavigation } from "@react-navigation/native";
+import {useNavigation} from '@react-navigation/native';
 
 const CategoriButton = () => {
   const navigation = useNavigation();
 
   return (
     <View>
-      <TouchableOpacity onPress={() => navigation.navigate("Categori")}>
-        <Icon name="list" style={{ color: "#00bcbc" }} />
+      <TouchableOpacity onPress={() => navigation.navigate('Categori')}>
+        <MaterialCommunityIcons name="layers-outline" style={{fontSize: 30}} />
       </TouchableOpacity>
     </View>
   );

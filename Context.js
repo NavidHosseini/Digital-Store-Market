@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
 const Context = React.createContext();
 
-export const Provider = ({ children }) => {
+export const Provider = ({children}) => {
   return <Context.Provider>{children}</Context.Provider>;
 };
 

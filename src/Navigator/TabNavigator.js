@@ -1,16 +1,16 @@
-import React from "react";
+import React from 'react';
 
-import CartButton from "../Components/ButtonBar/CartButton";
-import CategoriButton from "../Components/ButtonBar/CategoriButton";
-import HomeButton from "../Components/ButtonBar/HomeButton";
-import ProfileButton from "../Components/ButtonBar/ProfileButton";
+import CartButton from '../Components/ButtonBar/CartButton';
+import CategoriButton from '../Components/ButtonBar/CategoriButton';
+import HomeButton from '../Components/ButtonBar/HomeButton';
+import ProfileButton from '../Components/ButtonBar/ProfileButton';
 
-import Cart from "../Screens/Cart";
-import CategoriList from "../Screens/CategoriList";
-import Home from "../Screens/Home";
-import Profile from "../Screens/Profile";
+import Cart from '../Screens/Cart';
+import CategoriList from '../Screens/CategoriList';
+import Home from '../Screens/Home';
+import Profile from '../Screens/Profile';
 
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 const Tab = createBottomTabNavigator();
 
@@ -19,58 +19,54 @@ const TabNavigator = () => {
     <Tab.Navigator
       initialRouteName="Home"
       tabBarOptions={{
+        activeBackgroundColor: '#ff7878',
         style: {
-          backgroundColor: "#fff0e1",
+          backgroundColor: '#fdfdfd',
         },
-      }}
-    >
+      }}>
       <Tab.Screen
         name="Profile"
         options={{
-          tabBarLabel: "پروفایل",
+          tabBarLabel: 'پروفایل',
 
           tabBarIcon: () => {
             return <ProfileButton />;
           },
-        }}
-      >
-        {props => <Profile {...props} />}
+        }}>
+        {(props) => <Profile {...props} />}
       </Tab.Screen>
 
       <Tab.Screen
         name="Home"
         options={{
-          tabBarLabel: "منو اصلی",
+          tabBarLabel: 'منو اصلی',
           tabBarIcon: () => {
             return <HomeButton />;
           },
-        }}
-      >
-        {props => <Home {...props} />}
+        }}>
+        {(props) => <Home {...props} />}
       </Tab.Screen>
 
       <Tab.Screen
         name="Categori"
         options={{
-          tabBarLabel: "دسته یندی",
+          tabBarLabel: 'دسته یندی',
           tabBarIcon: () => {
             return <CategoriButton />;
           },
-        }}
-      >
-        {props => <CategoriList {...props} />}
+        }}>
+        {(props) => <CategoriList {...props} />}
       </Tab.Screen>
 
       <Tab.Screen
         name="Cart"
         options={{
-          tabBarLabel: "سبد خرید",
+          tabBarLabel: 'سبد خرید',
           tabBarIcon: () => {
             return <CartButton />;
           },
-        }}
-      >
-        {props => <Cart {...props} />}
+        }}>
+        {(props) => <Cart {...props} />}
       </Tab.Screen>
     </Tab.Navigator>
   );

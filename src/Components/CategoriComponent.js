@@ -1,15 +1,14 @@
-import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import React from 'react';
+import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 
-import Icon from "react-native-ionicons";
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
-const CategoriComponent = ({ name, iconname }) => {
+const CategoriComponent = ({name, iconname}) => {
   return (
     <TouchableOpacity>
       <View style={styles.View}>
         <Text style={styles.Text}>{name}</Text>
-
-        <Icon name={iconname} style={styles.Icon} />
+        <FontAwesome name={iconname} style={styles.Icon} />
       </View>
     </TouchableOpacity>
   );
@@ -19,18 +18,19 @@ export default CategoriComponent;
 
 const styles = StyleSheet.create({
   View: {
-    flexDirection: "row",
-    justifyContent: "flex-end",
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
     margin: 15,
-    alignItems: "center",
+    alignItems: 'center',
     borderBottomWidth: 1,
-    borderBottomColor: "#ff8040",
+    borderBottomColor: '#ff8040',
   },
   Text: {
-    fontFamily: "Sans",
+    fontFamily: 'Sans',
     fontSize: 18,
   },
   Icon: {
-    marginLeft: 30,
+    marginLeft: 35,
+    fontSize: 32,
   },
 });

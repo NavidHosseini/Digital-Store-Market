@@ -1,17 +1,17 @@
-import React from "react";
-import { View, TouchableOpacity } from "react-native";
+import React from 'react';
+import {View, TouchableOpacity} from 'react-native';
 
-import Icon from "react-native-ionicons";
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import { useNavigation } from "@react-navigation/native";
+import {useNavigation} from '@react-navigation/native';
 
 const HomeButton = () => {
   const navigation = useNavigation();
 
   return (
     <View>
-      <TouchableOpacity onPress={() => navigation.navigate("Home")}>
-        <Icon name="home" style={{ color: "#804040" }} />
+      <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+        <MaterialCommunityIcons name="home-outline" style={{fontSize: 30}} />
       </TouchableOpacity>
     </View>
   );

@@ -1,17 +1,17 @@
-import React from "react";
-import { View, TouchableOpacity } from "react-native";
+import React from 'react';
+import {View, TouchableOpacity} from 'react-native';
 
-import Icon from "react-native-ionicons";
+import Feather from 'react-native-vector-icons/Feather';
 
-import { useNavigation } from "@react-navigation/native";
+import {useNavigation} from '@react-navigation/native';
 
 const ProfileButton = () => {
   const navigation = useNavigation();
 
   return (
     <View>
-      <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
-        <Icon name="person" color="#004991" />
+      <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+        <Feather name="user" style={{fontSize: 27}} />
       </TouchableOpacity>
     </View>
   );

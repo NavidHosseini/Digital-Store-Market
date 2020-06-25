@@ -1,13 +1,11 @@
-import React from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
-import { useRoute } from "@react-navigation/native";
+import React from 'react';
+import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
+import {useRoute} from '@react-navigation/native';
 
 const RecommendResult = () => {
   const route = useRoute();
-  const name = route.params.name;
-  const price = route.params.price;
-  const detail = route.params.detail;
+
   const data = route.params.data;
   // console.log(data);
   return (
@@ -15,17 +13,31 @@ const RecommendResult = () => {
       <ScrollView>
         <View>
           <Image
-            style={{ width: "100%", height: 250 }}
+            style={{width: '100%', height: 250}}
             source={{
               uri: `http://192.168.1.5:1337${data.picCover.url}`,
             }}
           />
         </View>
         <View style={styles.ViewText}>
-          <Text style={styles.TextStyle}>{name}: نام محصول</Text>
-          <Text style={styles.TextStyle}>قیمت :{price} تومان </Text>
+          <Text style={styles.TextStyle}>{data.name}: نام محصول</Text>
+          <Text style={styles.TextStyle}>قیمت :{data.price} تومان </Text>
           <Text style={styles.TextStyle}>توضیحات :</Text>
-          <Text style={styles.TextStyle}>{detail}</Text>
+          <Text style={styles.TextStyle}>{data.detail}</Text>
+          <TouchableOpacity>
+            <View
+              style={{
+                alignItems: 'center',
+                backgroundColor: '#ff8040',
+                padding: 18,
+                marginTop: 20,
+                marginBottom: 40,
+              }}>
+              <Text style={{fontFamily: 'Sans', color: '#fff', fontSize: 17}}>
+                اصافه به سبد خرید
+              </Text>
+            </View>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </View>
@@ -35,8 +47,8 @@ export default RecommendResult;
 
 const styles = StyleSheet.create({
   TextStyle: {
-    textAlign: "right",
-    fontFamily: "Sans",
+    textAlign: 'right',
+    fontFamily: 'Sans',
     fontSize: 15,
   },
   ViewText: {
