@@ -1,9 +1,13 @@
-import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import SignIn from './SignIn';
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
 
-export default function Profile() {
-  return <SignIn />;
-}
+const Profile = () => {
+  return (
+    <View>
+      <Text>پروفایلس</Text>
+    </View>
+  );
+};
+export default Profile;
 
 const styles = StyleSheet.create({});

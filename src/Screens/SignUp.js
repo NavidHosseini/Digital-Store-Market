@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
   ProfileText: {
     paddingHorizontal: 90,
     paddingVertical: 12,
-    fontSize: 25,
+    fontSize: 22,
     fontFamily: 'SansBold',
   },
 });

@@ -11,7 +11,13 @@ const Home = () => {
     fetch("http://192.168.1.3:1337/digital-store-markets")
       .then(response => response.json())
       .then(json => setData(json))
-      .catch(error => console.error(error))
+      .catch(error => {
+        return (
+          <View>
+            <Text>مشکل در برقراری با سرور</Text>
+          </View>
+        );
+      })
       .finally(() => setLoading(false));
   }, []);
 
@@ -20,7 +26,6 @@ const Home = () => {
       return result.Type === Type;
     });
   };
-
   return (
     <View style={{ flex: 1, padding: 10 }}>
       {isLoading ? (

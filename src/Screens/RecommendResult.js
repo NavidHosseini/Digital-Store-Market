@@ -1,5 +1,12 @@
-import React, { useContext } from "react";
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import React, { useContext, useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  AsyncStorage,
+  TouchableOpacity,
+} from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import Context from "../../Context";
 import { useRoute } from "@react-navigation/native";
@@ -7,13 +14,17 @@ import { useRoute } from "@react-navigation/native";
 const RecommendResult = ({ navigation }) => {
   const route = useRoute();
   const { addCart } = useContext(Context);
+  const [Token, setToken] = useState();
 
   const data = route.params.data;
 
   const title = route.params.data.name;
   const url = route.params.data.picCover.url;
   const price = route.params.data.price;
-  // console.log(data);
+
+  AsyncStorage.getItem("token").then(token => setToken(token));
+  console.log(Token);
+
   return (
     <View>
       <ScrollView>
@@ -21,7 +32,7 @@ const RecommendResult = ({ navigation }) => {
           <Image
             style={{ width: "100%", height: 250 }}
             source={{
-              uri: `http://192.168.1.5:1337${url}`,
+              uri: `http://192.168.1.3:1337${url}`,
             }}
           />
         </View>
@@ -32,9 +43,12 @@ const RecommendResult = ({ navigation }) => {
           <Text style={styles.TextStyle}>{data.detail}</Text>
           <TouchableOpacity
             onPress={() => {
-              addCart({ title, url, price });
-              //navigation.navigate("Cart");
-              alert("به سبد خرید اضافه شد");
+              if (Token) {
+                addCart({ title, url, price });
+                alert("به سبد خرید اضافه شد");
+              } else {
+                alert("لطفا ابتدا وارد شوید");
+              }
             }}
           >
             <View
