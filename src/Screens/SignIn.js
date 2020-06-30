@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import {
   StyleSheet,
   TextInput,
@@ -15,13 +15,15 @@ import { useNavigation } from "@react-navigation/native";
 const Signin = () => {
   const navigation = useNavigation();
 
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [Token, setToken] = useState();
 
   const { signin } = useContext(Context);
 
-  AsyncStorage.getItem("token").then(token => setToken(token));
+  useEffect(() => {
+    AsyncStorage.getItem("token").then(token => setToken(token));
+  });
   //console.log(Token);
 
   if (Token === null) {
@@ -35,8 +37,8 @@ const Signin = () => {
           <View style={styles.TextInput}>
             <TextInput
               placeholder="ایمیل"
-              value={username}
-              onChangeText={text => setUsername(text)}
+              value={email}
+              onChangeText={text => setEmail(text)}
               autoCapitalize="none"
               style={styles.TextInputstyle}
             />
@@ -64,11 +66,11 @@ const Signin = () => {
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
-              signin({ username, password });
+              signin({ email, password });
               if (Token) {
                 navigation.navigate("Profile");
               } else {
-                return alert("اشکال در ایمیل یا پسورد");
+                // return alert("اشکال در ایمیل یا پسورد");
               }
             }}
           >

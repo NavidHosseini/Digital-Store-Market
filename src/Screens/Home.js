@@ -8,16 +8,10 @@ const Home = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch("http://192.168.1.3:1337/digital-store-markets")
+    fetch("http://192.168.1.6:1337/digital-store-markets")
       .then(response => response.json())
       .then(json => setData(json))
-      .catch(error => {
-        return (
-          <View>
-            <Text>مشکل در برقراری با سرور</Text>
-          </View>
-        );
-      })
+      .catch(error => console.log(error))
       .finally(() => setLoading(false));
   }, []);
 

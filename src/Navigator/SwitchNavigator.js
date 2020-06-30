@@ -5,6 +5,7 @@ import Profile from "../Screens/Profile";
 
 import RecommendResult from "../Screens/RecommendResult";
 import Signin from "../Screens/SignIn";
+import SignUp from "../Screens/SignUp";
 import TabNavigator from "./TabNavigator";
 import { createStackNavigator } from "@react-navigation/stack";
 
@@ -25,6 +26,9 @@ const SwitchNavigator = () => {
       </Stack.Screen>
       <Stack.Screen name="SignIn" options={{ headerShown: false }}>
         {props => <Signin {...props} />}
+      </Stack.Screen>
+      <Stack.Screen name="SignUp" options={{ headerShown: false }}>
+        {props => <SignUp {...props} />}
       </Stack.Screen>
 
       <Stack.Screen name="RecommendResult" options={{ headerShown: false }}>

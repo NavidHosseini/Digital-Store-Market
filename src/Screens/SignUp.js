@@ -1,30 +1,41 @@
-import React, {useState} from 'react';
+import React, { useState, useContext, useEffect } from "react";
 import {
+  AsyncStorage,
   StyleSheet,
   TextInput,
   TouchableOpacity,
   View,
   Text,
   ScrollView,
-} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
-
+} from "react-native";
+import Context from "../../Context";
+import { useNavigation } from "@react-navigation/native";
 const Signin = () => {
   const navigation = useNavigation();
+  const { signup } = useContext(Context);
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [Token, setToken] = useState();
+
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
+  const [family, setFamily] = useState("");
+  const [password, setPassword] = useState("");
+  useEffect(() => {
+    AsyncStorage.getItem("token").then(token => setToken(token));
+  });
+
   return (
     <ScrollView>
       <View>
-        <View style={{alignItems: 'center', marginVertical: 20}}>
+        <View style={{ alignItems: "center", marginVertical: 20 }}>
           <Text style={styles.ProfileText}>ایجاد پروفایل کاربری</Text>
         </View>
         <View style={styles.TextInput}>
           <TextInput
             placeholder="نام"
-            value={username}
-            onChangeText={(text) => setUsername(text)}
+            value={name}
+            onChangeText={text => setName(text)}
             autoCapitalize="none"
             style={styles.TextInputstyle}
           />
@@ -32,26 +43,27 @@ const Signin = () => {
         <View style={styles.TextInput}>
           <TextInput
             placeholder="نام خانوادگی"
-            value={username}
-            onChangeText={(text) => setUsername(text)}
+            value={family}
+            onChangeText={text => setFamily(text)}
             autoCapitalize="none"
             style={styles.TextInputstyle}
           />
         </View>
         <View style={styles.TextInput}>
           <TextInput
-            placeholder=" نام کاربری (انگلیسی)"
+            placeholder="نام کاربری"
             value={username}
-            onChangeText={(text) => setUsername(text)}
+            onChangeText={text => setUsername(text)}
             autoCapitalize="none"
             style={styles.TextInputstyle}
           />
         </View>
+
         <View style={styles.TextInput}>
           <TextInput
             placeholder="ایمیل"
-            value={username}
-            onChangeText={(text) => setUsername(text)}
+            value={email}
+            onChangeText={text => setEmail(text)}
             autoCapitalize="none"
             style={styles.TextInputstyle}
           />
@@ -62,18 +74,26 @@ const Signin = () => {
             placeholder="پسورد"
             secureTextEntry={true}
             value={password}
-            onChangeText={(text) => setPassword(text)}
+            onChangeText={text => setPassword(text)}
             autoCapitalize="none"
             style={styles.TextInputstyle}
           />
         </View>
 
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => {
+            signup({ email, password, username, password, name });
+
+            navigation.navigate("Home");
+          }}
+        >
           <Text>ثبت نام</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button2}
-          onPress={() => navigation.navigate('SignIn')}>
+          onPress={() => navigation.navigate("SignIn")}
+        >
           <Text>ورود به صفحه حساب کاربری</Text>
         </TouchableOpacity>
       </View>
@@ -85,36 +105,36 @@ export default Signin;
 
 const styles = StyleSheet.create({
   TextInput: {
-    backgroundColor: '#cccccc',
+    backgroundColor: "#cccccc",
     borderRadius: 10,
     margin: 20,
   },
   button: {
-    backgroundColor: '#ff8040',
+    backgroundColor: "#ff8040",
     borderRadius: 10,
     padding: 20,
-    alignItems: 'center',
+    alignItems: "center",
     margin: 20,
   },
   button2: {
-    backgroundColor: '#f5cbae',
+    backgroundColor: "#f5cbae",
     borderRadius: 10,
     padding: 20,
-    alignItems: 'center',
+    alignItems: "center",
     margin: 20,
   },
   TextInputstyle: {
-    textAlign: 'right',
-    fontFamily: 'Sans',
+    textAlign: "right",
+    fontFamily: "Sans",
     marginRight: 15,
   },
   buttonText: {
-    fontFamily: 'Sans',
+    fontFamily: "Sans",
   },
   ProfileText: {
     paddingHorizontal: 90,
     paddingVertical: 12,
     fontSize: 22,
-    fontFamily: 'SansBold',
+    fontFamily: "SansBold",
   },
 });

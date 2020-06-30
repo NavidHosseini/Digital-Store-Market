@@ -25,7 +25,7 @@ const reducer = (state, action) => {
 
 export const Provider = ({ children }) => {
   const [cartProduct, dispatch] = useReducer(reducer, []);
-  const [data, setData] = useState("");
+  const [datauser, setDatauser] = useState("");
 
   const addCart = ({ title, url, price }) => {
     return dispatch({ type: "ADD_CART", payload: { title, url, price } });
@@ -33,29 +33,54 @@ export const Provider = ({ children }) => {
   const deleteCart = id => {
     return dispatch({ type: "DELETE_CART", payload: id });
   };
-  const signin = async ({ username, password }) => {
+
+  const signup = async ({ email, password, name, username, family }) => {
     try {
-      await fetch("http://192.168.1.3:1337/auth/local", {
+      await fetch("http://192.168.1.6:1337/auth/local/register", {
         method: "POST",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          identifier: username,
+          email: email,
+          password: password,
+          name: name,
+          username: username,
+          family: family,
+        }),
+      })
+        .then(response => response.json())
+        .then(res => setDatauser(res))
+        .catch(err => console.log(err));
+      await AsyncStorage.setItem("token", datauser.jwt);
+    } catch (err) {}
+  };
+
+  const signin = async ({ email, password }) => {
+    try {
+      await fetch("http://192.168.1.6:1337/auth/local", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          identifier: email,
           password: password,
         }),
       })
         .then(response => response.json())
-        .then(res => setData(res))
+        .then(res => setDatauser(res))
         .catch(err => console.log(err));
-      //console.log(data.jwt);
-      await AsyncStorage.setItem("token", data.jwt);
+      await AsyncStorage.setItem("token", datauser.jwt);
     } catch (err) {}
   };
 
   return (
-    <Context.Provider value={{ cartProduct, addCart, deleteCart, signin }}>
+    <Context.Provider
+      value={{ cartProduct, addCart, deleteCart, signin, signup, datauser }}
+    >
       {children}
     </Context.Provider>
   );

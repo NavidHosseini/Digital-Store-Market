@@ -23,7 +23,7 @@ const RecommendResult = ({ navigation }) => {
   const price = route.params.data.price;
 
   AsyncStorage.getItem("token").then(token => setToken(token));
-  console.log(Token);
+  //console.log(Token);
 
   return (
     <View>
@@ -32,7 +32,7 @@ const RecommendResult = ({ navigation }) => {
           <Image
             style={{ width: "100%", height: 250 }}
             source={{
-              uri: `http://192.168.1.3:1337${url}`,
+              uri: `http://192.168.1.6:1337${url}`,
             }}
           />
         </View>
