@@ -36,7 +36,7 @@ export const Provider = ({ children }) => {
 
   const signup = async ({ email, password, name, username, family }) => {
     try {
-      await fetch("http://192.168.1.6:1337/auth/local/register", {
+      await fetch("http://192.168.1.4:1337/auth/local/register", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -54,12 +54,12 @@ export const Provider = ({ children }) => {
         .then(res => setDatauser(res))
         .catch(err => console.log(err));
       await AsyncStorage.setItem("token", datauser.jwt);
-    } catch (err) {}
+    } catch (err) { }
   };
 
   const signin = async ({ email, password }) => {
     try {
-      await fetch("http://192.168.1.6:1337/auth/local", {
+      await fetch("http://192.168.1.4:1337/auth/local", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -74,12 +74,33 @@ export const Provider = ({ children }) => {
         .then(res => setDatauser(res))
         .catch(err => console.log(err));
       await AsyncStorage.setItem("token", datauser.jwt);
-    } catch (err) {}
+    } catch (err) { }
+  };
+
+  const updateUser = async ({ email, name, family, id }) => {
+    try {
+      const token = await AsyncStorage.getItem("token");
+      fetch(`http://192.168.1.4:1337/users/${id}`, {
+        method: "PUT",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          email: email,
+          name: name,
+          family: family,
+        }),
+      })
+
+
+    } catch (err) { }
   };
 
   return (
     <Context.Provider
-      value={{ cartProduct, addCart, deleteCart, signin, signup, datauser }}
+      value={{ cartProduct, addCart, deleteCart, signin, signup, updateUser }}
     >
       {children}
     </Context.Provider>

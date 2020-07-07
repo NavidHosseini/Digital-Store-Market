@@ -8,7 +8,7 @@ const CategoriList = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch("http://192.168.1.6:1337/categories")
+    fetch("http://192.168.1.4:1337/categories")
       .then(response => response.json())
       .then(json => setData(json))
       .catch(error => console.error(error))

@@ -83,9 +83,11 @@ const Signin = () => {
         <TouchableOpacity
           style={styles.button}
           onPress={() => {
-            signup({ email, password, username, password, name });
+            {
+              signup({ email, password, username, password, name });
 
-            navigation.navigate("Home");
+              navigation.navigate("Home");
+            }
           }}
         >
           <Text>ثبت نام</Text>

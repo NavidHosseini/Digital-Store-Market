@@ -24,7 +24,7 @@ const Signin = () => {
   useEffect(() => {
     AsyncStorage.getItem("token").then(token => setToken(token));
   });
-  //console.log(Token);
+  console.log(Token);
 
   if (Token === null) {
     return (

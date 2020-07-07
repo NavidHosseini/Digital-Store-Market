@@ -15,7 +15,7 @@ const CartItemComponent = ({ item }) => {
       >
         <Image
           style={{ height: 100, width: 100 }}
-          source={{ uri: `http://192.168.1.6:1337${item.url}` }}
+          source={{ uri: `http://192.168.1.4:1337${item.url}` }}
         />
 
         <Text

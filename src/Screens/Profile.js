@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -6,26 +6,37 @@ import {
   Button,
   AsyncStorage,
   Image,
+  TouchableOpacity
 } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import Context from "../../Context";
 import { useNavigation } from "@react-navigation/native";
 
 const Profile = () => {
   const navigation = useNavigation();
-  //const [data, setData] = useState([]);
+  const [data, setData] = useState({});
 
-  // useEffect(() => {
-  //   fetch("http://192.168.1.6:1337/users/me")
-  //     .then(response => response.json())
-  //     .then(json => setData(json))
-  //     .catch(error => console.log(error));
-  // }, []);
-  //console.log(data);
-  const { datauser } = useContext(Context);
-  //console.log(datauser.user.pic.url);
-  if (datauser) {
+  useEffect(() => {
+    const dataFetch = async () => {
+      const token = await AsyncStorage.getItem("token")
+      // console.log(token)
+      fetch('http://192.168.1.4:1337/users/me', {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+      })
+        .then(response => response.json())
+        .then(json => setData(json))
+        .catch(error => console.log(error))
+    }
+
+    dataFetch()
+  }, []);
+
+
+  if (data) {
     return (
       <View>
         <View style={styles.profileTextView}>
@@ -40,22 +51,14 @@ const Profile = () => {
                 flexDirection: "row",
               }}
             >
-              <MaterialCommunityIcons
-                name="pencil-outline"
-                style={styles.icon}
-              />
+
               <Text style={styles.profilename}>
                 نام و نام خانوادگی :
-                {datauser.user.name}
-                {datauser.user.family}
+                {data.name}
+                {data.family}
               </Text>
             </View>
-            <Image
-              source={{
-                uri: `http://192.168.1.6:1337${datauser.user.pic.url}`,
-              }}
-              style={styles.image}
-            />
+
           </View>
           <View
             style={{
@@ -64,9 +67,31 @@ const Profile = () => {
               marginTop: 15,
             }}
           >
-            <MaterialCommunityIcons name="pencil-outline" style={styles.icon} />
-            <Text style={styles.email}>ایمیل : {datauser.user.email}</Text>
+
+            <Text style={styles.email}>ایمیل : {data.email}</Text>
           </View>
+          <View
+            style={{
+              flexDirection: "row",
+              marginRight: 15,
+              marginTop: 15,
+            }}
+          >
+            <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => navigation.navigate('EditProfile', {
+              id: data.id
+            })}>
+
+              <MaterialCommunityIcons name="pencil" style={styles.icon} />
+              <Text style={styles.profilename}>
+                ویرایش پروفایل
+            </Text>
+            </TouchableOpacity>
+
+            <Text>
+
+            </Text>
+          </View>
+
         </View>
         <TouchableOpacity
           onPress={() => {
@@ -128,6 +153,6 @@ const styles = StyleSheet.create({
   },
   icon: {
     fontSize: 22,
-    marginRight: 15,
+    marginRight: 8,
   },
 });
