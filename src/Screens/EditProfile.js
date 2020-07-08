@@ -52,10 +52,9 @@ const EditProfile = () => {
 
 
             <TouchableOpacity style={styles.Button}
-                onPress={() => {
-                    updateUser({ email, name, family, id })
-                        , navigation.navigate('Home'),
-                        alert('برای مشاهده تغییرات یکبار خارج و وارد شوید')
+                onPress={async () => {
+                    await updateUser({ email, name, family, id })
+                        , await navigation.navigate('SignIn')
                 }} >
                 <Text style={styles.TextButton}> ویرایش</Text>
             </TouchableOpacity>

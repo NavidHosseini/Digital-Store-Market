@@ -82,7 +82,7 @@ export const Provider = ({ children }) => {
   const updateUser = async ({ email, name, family, id }) => {
     try {
       const token = await AsyncStorage.getItem("token");
-      fetch(`${baseUrl}/users/${id}`, {
+      await fetch(`${baseUrl}/users/${id}`, {
         method: "PUT",
         headers: {
           Accept: "application/json",
