@@ -12,7 +12,7 @@ import Context from "../../Context";
 import { useNavigation } from "@react-navigation/native";
 const Signin = () => {
   const navigation = useNavigation();
-  const { signup } = useContext(Context);
+  const { signup, signin } = useContext(Context);
 
   const [Token, setToken] = useState();
 
@@ -82,11 +82,12 @@ const Signin = () => {
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() => {
+          onPress={async () => {
             {
-              signup({ email, password, username, password, name });
+              await signup({ email, password, username, password, name, family });
+              await signin({ email, password })
 
-              navigation.navigate("Home");
+              navigation.navigate("Profile");
             }
           }}
         >

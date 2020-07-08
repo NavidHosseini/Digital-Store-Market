@@ -1,9 +1,12 @@
-import React from "react";
-import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
+import React, { useContext } from "react";
+import { StyleSheet, View, Image, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import Context from "../../../Context";
 
 const RecommendItem = ({ item }) => {
   const navigation = useNavigation();
+  const { baseUrl } = useContext(Context);
+
   return (
     <View>
       <View style={styles.Text}>
@@ -20,7 +23,7 @@ const RecommendItem = ({ item }) => {
         >
           <Image
             source={{
-              uri: `http://192.168.1.7:1337${item.picCover.url}`,
+              uri: `${baseUrl}${item.picCover.url}`,
             }}
             style={styles.image}
           />

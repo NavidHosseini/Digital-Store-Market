@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, FlatList } from "react-native";
+import { View, FlatList } from "react-native";
 import CategoriResultComponent from "../Components/Categori/CategoriResultComponent";
 import { useRoute } from "@react-navigation/native";
 
@@ -21,7 +21,7 @@ const CategoriResult = () => {
         data={CustomData}
         keyExtractor={CustomData => CustomData.id.toString()}
         renderItem={({ item }) => {
-          return <CategoriResultComponent item={item} />;
+          return <CategoriResultComponent item={item} data={data} />;
         }}
       />
     </View>
@@ -29,4 +29,3 @@ const CategoriResult = () => {
 };
 export default CategoriResult;
 
-const styles = StyleSheet.create({});

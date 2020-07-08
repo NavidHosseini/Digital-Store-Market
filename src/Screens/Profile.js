@@ -1,25 +1,26 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import {
   StyleSheet,
   Text,
   View,
   Button,
   AsyncStorage,
-  Image,
   TouchableOpacity
 } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { useNavigation } from "@react-navigation/native";
+import Context from "../../Context";
 
 const Profile = () => {
   const navigation = useNavigation();
   const [data, setData] = useState({});
+  const { baseUrl } = useContext(Context);
 
   useEffect(() => {
     const dataFetch = async () => {
       const token = await AsyncStorage.getItem("token")
       // console.log(token)
-      fetch('http://192.168.1.7:1337/users/me', {
+      fetch(`${baseUrl}/users/me`, {
         method: 'GET',
         headers: {
           Accept: 'application/json',
@@ -44,38 +45,23 @@ const Profile = () => {
         </View>
         <View style={{ alignItems: "flex-end" }}>
           <View style={{ flexDirection: "row" }}>
-            <View
-              style={{
-                alignSelf: "center",
-                marginRight: 15,
-                flexDirection: "row",
-              }}
-            >
+            <View style={styles.ViewText} >
 
               <Text style={styles.profilename}>
                 نام و نام خانوادگی :
-                {data.name}
-                {data.family}
+                {`${data.name} ${data.family}`}
               </Text>
             </View>
 
           </View>
           <View
-            style={{
-              flexDirection: "row",
-              marginRight: 15,
-              marginTop: 15,
-            }}
+            style={styles.ViewText2}
           >
 
             <Text style={styles.email}>ایمیل : {data.email}</Text>
           </View>
           <View
-            style={{
-              flexDirection: "row",
-              marginRight: 15,
-              marginTop: 15,
-            }}
+            style={styles.ViewText2}
           >
             <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => navigation.navigate('EditProfile', {
               id: data.id,
@@ -100,13 +86,7 @@ const Profile = () => {
           onPress={() => {
             AsyncStorage.removeItem("token"), navigation.navigate("SignIn");
           }}
-          style={{
-            backgroundColor: "#8080ff",
-            alignItems: "center",
-            padding: 20,
-            margin: 30,
-            borderRadius: 20,
-          }}
+          style={styles.exitButton}
         >
           <Text>خروج</Text>
         </TouchableOpacity>
@@ -158,4 +138,21 @@ const styles = StyleSheet.create({
     fontSize: 22,
     marginRight: 8,
   },
+  ViewText: {
+    alignSelf: "center",
+    marginRight: 15,
+    flexDirection: "row",
+  },
+  ViewText2: {
+    flexDirection: "row",
+    marginRight: 15,
+    marginTop: 15,
+  },
+  exitButton: {
+    backgroundColor: "#8080ff",
+    alignItems: "center",
+    padding: 20,
+    margin: 30,
+    borderRadius: 20,
+  }
 });

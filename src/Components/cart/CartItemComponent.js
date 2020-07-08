@@ -1,49 +1,39 @@
 import React, { useContext } from "react";
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity
+} from "react-native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Context from "../../../Context";
 
 const CartItemComponent = ({ item }) => {
-  const { deleteCart } = useContext(Context);
+
+  const { deleteCart, baseUrl } = useContext(Context);
+
   return (
     <View style={styles.View}>
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-        }}
-      >
+      <View style={styles.View2} >
         <Image
-          style={{ height: 100, width: 100 }}
-          source={{ uri: `http://192.168.1.7:1337${item.url}` }}
+          style={styles.image}
+          source={{ uri: `${baseUrl}${item.url}` }}
         />
 
-        <Text
-          style={{
-            textAlign: "right",
-            marginRight: 10,
-            marginTop: 10,
-            fontFamily: "Sans",
-          }}
-        >
+        <Text style={styles.Text}>
           {item.title.slice(0, 10)}.... : محصول
         </Text>
       </View>
-      <Text
-        style={{
-          textAlign: "right",
-          fontFamily: "Sans",
-          marginRight: 10,
-        }}
-      >
+      <Text style={styles.Text2} >
         قیمت: {item.price}
       </Text>
 
       <TouchableOpacity
-        style={{ alignItems: "center", backgroundColor: "#ff9494" }}
+        style={styles.trash}
         onPress={() => deleteCart(item.id)}
       >
-        <FontAwesome name="trash" style={{ fontSize: 38 }} />
+        <FontAwesome name="trash" style={styles.icon} />
       </TouchableOpacity>
     </View>
   );
@@ -57,4 +47,30 @@ const styles = StyleSheet.create({
     marginTop: 25,
     backgroundColor: "#d4d4d4",
   },
+  View2: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  image: {
+    height: 100,
+    width: 100
+  },
+  Text: {
+    textAlign: "right",
+    marginRight: 10,
+    marginTop: 10,
+    fontFamily: "Sans",
+  },
+  Text2: {
+    textAlign: "right",
+    fontFamily: "Sans",
+    marginRight: 10,
+  },
+  trash: {
+    alignItems: "center",
+    backgroundColor: "#ff9494"
+  },
+  icon: {
+    fontSize: 38
+  }
 });

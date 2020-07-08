@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 
 import { AsyncStorage } from "react-native";
-import CategoriResult from "../Screens/CategoriResult";
 
+import CategoriResult from "../Screens/CategoriResult";
 import Profile from "../Screens/Profile";
 import RecommendResult from "../Screens/RecommendResult";
 import Signin from "../Screens/SignIn";
 import SignUp from "../Screens/SignUp";
 import TabNavigator from "./TabNavigator";
-import { createStackNavigator } from "@react-navigation/stack";
 import EditProfile from "../Screens/EditProfile";
+
+import { createStackNavigator } from "@react-navigation/stack";
+
 
 const Stack = createStackNavigator();
 

@@ -20,15 +20,14 @@ const EditProfile = () => {
             setName(`${nameUser}`)
     }, [])
 
+
     const route = useRoute();
     const id = route.params.id
-
-
     const nameUser = route.params.name
     const familyUser = route.params.family
     const emailUser = route.params.email
 
-    console.log(emailUser)
+    //console.log(emailUser)
 
     return (
         <View>
@@ -55,7 +54,8 @@ const EditProfile = () => {
             <TouchableOpacity style={styles.Button}
                 onPress={() => {
                     updateUser({ email, name, family, id })
-                        , navigation.navigate('Cart')
+                        , navigation.navigate('Home'),
+                        alert('برای مشاهده تغییرات یکبار خارج و وارد شوید')
                 }} >
                 <Text style={styles.TextButton}> ویرایش</Text>
             </TouchableOpacity>

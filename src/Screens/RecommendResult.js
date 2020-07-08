@@ -13,7 +13,8 @@ import { useRoute } from "@react-navigation/native";
 
 const RecommendResult = ({ navigation }) => {
   const route = useRoute();
-  const { addCart } = useContext(Context);
+  const { addCart, baseUrl } = useContext(Context);
+
   const [Token, setToken] = useState();
 
   const data = route.params.data;
@@ -32,7 +33,7 @@ const RecommendResult = ({ navigation }) => {
           <Image
             style={{ width: "100%", height: 250 }}
             source={{
-              uri: `http://192.168.1.7:1337${url}`,
+              uri: `${baseUrl}${url}`,
             }}
           />
         </View>
@@ -52,15 +53,9 @@ const RecommendResult = ({ navigation }) => {
             }}
           >
             <View
-              style={{
-                alignItems: "center",
-                backgroundColor: "#ff8040",
-                padding: 18,
-                marginTop: 20,
-                marginBottom: 40,
-              }}
+              style={styles.Button}
             >
-              <Text style={{ fontFamily: "Sans", color: "#fff", fontSize: 17 }}>
+              <Text style={styles.ButtonText}>
                 اضافه به سبد خرید
               </Text>
             </View>
@@ -81,4 +76,16 @@ const styles = StyleSheet.create({
   ViewText: {
     marginHorizontal: 15,
   },
+  Button: {
+    alignItems: "center",
+    backgroundColor: "#ff8040",
+    padding: 18,
+    marginTop: 20,
+    marginBottom: 40,
+  },
+  ButtonText: {
+    fontFamily: "Sans",
+    color: "#fff",
+    fontSize: 17
+  }
 });

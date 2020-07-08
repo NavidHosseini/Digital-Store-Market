@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { StyleSheet, View, ScrollView, ActivityIndicator } from "react-native";
 
 import CategoriComponent from "../Components/Categori/CategoriComponent";
+import Context from "../../Context";
 
 const CategoriList = () => {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
+  const { baseUrl } = useContext(Context);
 
   useEffect(() => {
-    fetch("http://192.168.1.7:1337/categories")
+    fetch(`${baseUrl}/categories`)
       .then(response => response.json())
       .then(json => setData(json))
       .catch(error => console.error(error))
@@ -22,14 +24,12 @@ const CategoriList = () => {
   };
 
   return (
-    <View>
+    <View >
       {isLoading ? (
         <View style={styles.ActivityIndicator}>
           <ActivityIndicator
             size="large"
-            color="red"
-            style={styles.ActivityIndicator}
-          />
+            color="red" />
         </View>
       ) : (
           <View style={{ marginTop: 10 }}>
@@ -62,10 +62,10 @@ const CategoriList = () => {
   );
 };
 export default CategoriList;
+
 const styles = StyleSheet.create({
   ActivityIndicator: {
     alignItems: "center",
-
     justifyContent: "center",
     flex: 1,
   },
