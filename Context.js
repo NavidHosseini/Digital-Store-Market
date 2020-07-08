@@ -36,7 +36,7 @@ export const Provider = ({ children }) => {
 
   const signup = async ({ email, password, name, username, family }) => {
     try {
-      await fetch("http://192.168.1.4:1337/auth/local/register", {
+      await fetch("http://192.168.1.7:1337/auth/local/register", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -59,7 +59,7 @@ export const Provider = ({ children }) => {
 
   const signin = async ({ email, password }) => {
     try {
-      await fetch("http://192.168.1.4:1337/auth/local", {
+      await fetch("http://192.168.1.7:1337/auth/local", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -71,16 +71,19 @@ export const Provider = ({ children }) => {
         }),
       })
         .then(response => response.json())
-        .then(res => setDatauser(res))
+        .then(async (res) => {
+          setDatauser(res)
+
+          await AsyncStorage.setItem("token", res.jwt);
+        })
         .catch(err => console.log(err));
-      await AsyncStorage.setItem("token", datauser.jwt);
     } catch (err) { }
   };
 
   const updateUser = async ({ email, name, family, id }) => {
     try {
       const token = await AsyncStorage.getItem("token");
-      fetch(`http://192.168.1.4:1337/users/${id}`, {
+      fetch(`http://192.168.1.7:1337/users/${id}`, {
         method: "PUT",
         headers: {
           Accept: "application/json",

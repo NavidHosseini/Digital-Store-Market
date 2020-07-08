@@ -8,7 +8,7 @@ const CategoriList = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch("http://192.168.1.4:1337/categories")
+    fetch("http://192.168.1.7:1337/categories")
       .then(response => response.json())
       .then(json => setData(json))
       .catch(error => console.error(error))
@@ -32,32 +32,32 @@ const CategoriList = () => {
           />
         </View>
       ) : (
-        <View style={{ marginTop: 10 }}>
-          <ScrollView>
-            <CategoriComponent
-              name="کالاهای دیجیتال"
-              iconname="tv"
-              data={filterResults("Digital")}
-            />
-            <CategoriComponent
-              name="آرایشی و بهداشتی"
-              iconname="cut"
-              data={filterResults("Cosmetics")}
-            />
-            <CategoriComponent
-              name="ابزار"
-              iconname="wrench"
-              data={filterResults("Tools")}
-            />
-            <CategoriComponent name="پوشاک" iconname="shopping-bag" />
-            <CategoriComponent name="آشپزخانه" iconname="home" />
-            <CategoriComponent name="کتاب" iconname="pencil-square-o" />
-            <CategoriComponent name="اسباب بازی" iconname="gamepad" />
-            <CategoriComponent name="ورزش و سفر" iconname="bicycle" />
-            <CategoriComponent name="خودرو" iconname="car" />
-          </ScrollView>
-        </View>
-      )}
+          <View style={{ marginTop: 10 }}>
+            <ScrollView>
+              <CategoriComponent
+                name="کالاهای دیجیتال"
+                iconname="tv"
+                data={filterResults("Digital")}
+              />
+              <CategoriComponent
+                name="آرایشی و بهداشتی"
+                iconname="cut"
+                data={filterResults("Cosmetics")}
+              />
+              <CategoriComponent
+                name="ابزار"
+                iconname="wrench"
+                data={filterResults("Tools")}
+              />
+              <CategoriComponent name="پوشاک" iconname="shopping-bag" />
+              <CategoriComponent name="آشپزخانه" iconname="home" />
+              <CategoriComponent name="کتاب" iconname="pencil-square-o" />
+              <CategoriComponent name="اسباب بازی" iconname="gamepad" />
+              <CategoriComponent name="ورزش و سفر" iconname="bicycle" />
+              <CategoriComponent name="خودرو" iconname="car" />
+            </ScrollView>
+          </View>
+        )}
     </View>
   );
 };

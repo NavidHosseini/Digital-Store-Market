@@ -6,14 +6,29 @@ import { useNavigation } from "@react-navigation/native";
 
 
 const EditProfile = () => {
+    const navigation = useNavigation();
+    const { updateUser } = useContext(Context);
+
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [family, setFamily] = useState('');
-    const route = useRoute();
-    const navigation = useNavigation();
 
+
+    useEffect(() => {
+        setEmail(`${emailUser}`),
+            setFamily(`${familyUser}`),
+            setName(`${nameUser}`)
+    }, [])
+
+    const route = useRoute();
     const id = route.params.id
-    const { updateUser } = useContext(Context);
+
+
+    const nameUser = route.params.name
+    const familyUser = route.params.family
+    const emailUser = route.params.email
+
+    console.log(emailUser)
 
     return (
         <View>
@@ -22,6 +37,7 @@ const EditProfile = () => {
                 onChangeText={text => setName(text)}
                 autoCapitalize="none"
                 style={styles.TextInput} />
+
 
             <TextInput placeholder="فامیل"
                 value={family}
@@ -44,6 +60,8 @@ const EditProfile = () => {
                 <Text style={styles.TextButton}> ویرایش</Text>
             </TouchableOpacity>
 
+
+
         </View>
     );
 
@@ -55,6 +73,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#cccccc",
         borderRadius: 10,
         margin: 20,
+
     },
     Button: {
         padding: 15,

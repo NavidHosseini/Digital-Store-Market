@@ -8,7 +8,7 @@ const Home = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch("http://192.168.1.4:1337/digital-store-markets")
+    fetch("http://192.168.1.7:1337/digital-store-markets")
       .then(response => response.json())
       .then(json => setData(json))
       .catch(error => console.log(error))
@@ -27,30 +27,30 @@ const Home = () => {
           <ActivityIndicator size="large" color="red" />
         </View>
       ) : (
-        <View>
-          <View style={styles.welcomeStyle}>
-            <Text style={styles.welcomeTitle}>
-              به فروشگاه دیجیتال خوش امدید
+          <View>
+            <View style={styles.welcomeStyle}>
+              <Text style={styles.welcomeTitle}>
+                به فروشگاه دیجیتال خوش امدید
             </Text>
-          </View>
-          <ScrollView>
-            <View style={{ marginBottom: 100 }}>
-              <Recommend
-                title="موبایل های پیشنهادی ..."
-                result={filterResults("Mobile")}
-              />
-              <Recommend
-                title="لپ تاپ های پیشنهادی ..."
-                result={filterResults("LapTop")}
-              />
-              <Recommend
-                title="دوربین های پیشنهادی ..."
-                result={filterResults("Camera")}
-              />
             </View>
-          </ScrollView>
-        </View>
-      )}
+            <ScrollView>
+              <View style={{ marginBottom: 100 }}>
+                <Recommend
+                  title="موبایل های پیشنهادی ..."
+                  result={filterResults("Mobile")}
+                />
+                <Recommend
+                  title="لپ تاپ های پیشنهادی ..."
+                  result={filterResults("LapTop")}
+                />
+                <Recommend
+                  title="دوربین های پیشنهادی ..."
+                  result={filterResults("Camera")}
+                />
+              </View>
+            </ScrollView>
+          </View>
+        )}
     </View>
   );
 };

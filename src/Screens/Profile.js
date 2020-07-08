@@ -19,7 +19,7 @@ const Profile = () => {
     const dataFetch = async () => {
       const token = await AsyncStorage.getItem("token")
       // console.log(token)
-      fetch('http://192.168.1.4:1337/users/me', {
+      fetch('http://192.168.1.7:1337/users/me', {
         method: 'GET',
         headers: {
           Accept: 'application/json',
@@ -78,7 +78,10 @@ const Profile = () => {
             }}
           >
             <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => navigation.navigate('EditProfile', {
-              id: data.id
+              id: data.id,
+              name: data.name,
+              family: data.family,
+              email: data.email
             })}>
 
               <MaterialCommunityIcons name="pencil" style={styles.icon} />

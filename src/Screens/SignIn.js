@@ -21,73 +21,84 @@ const Signin = () => {
 
   const { signin } = useContext(Context);
 
-  useEffect(() => {
-    AsyncStorage.getItem("token").then(token => setToken(token));
-  });
-  console.log(Token);
+  const tokenAssignment = async () => {
+    const token = await AsyncStorage.getItem("token")
 
-  if (Token === null) {
-    return (
-      <ScrollView>
-        <View>
-          <View style={styles.View}>
-            <Text style={styles.ProfileText}>پروفایل کاربری</Text>
-          </View>
-
-          <View style={styles.TextInput}>
-            <TextInput
-              placeholder="ایمیل"
-              value={email}
-              onChangeText={text => setEmail(text)}
-              autoCapitalize="none"
-              style={styles.TextInputstyle}
-            />
-          </View>
-
-          <View style={styles.TextInput}>
-            <TextInput
-              placeholder="پسورد"
-              secureTextEntry={true}
-              value={password}
-              onChangeText={text => setPassword(text)}
-              autoCapitalize="none"
-              place
-              style={styles.TextInputstyle}
-            />
-          </View>
-          <TouchableOpacity>
-            <View style={styles.forgotpasswordView}>
-              <Text style={styles.forgotpasswordText}>
-                کلمه عبور خود را فراموش کرده ام ؟
-              </Text>
-            </View>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => {
-              signin({ email, password });
-              if (Token) {
-                navigation.navigate("Profile");
-              } else {
-                // return alert("اشکال در ایمیل یا پسورد");
-              }
-            }}
-          >
-            <Text style={styles.buttonText}>ورود به حساب</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button2}
-            onPress={() => navigation.navigate("SignUp")}
-          >
-            <Text style={styles.buttonText}>ساخت حساب کاربری</Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
-    );
-  } else {
-    return <Profile />;
+    setToken(token)
   }
+
+  useEffect(() => {
+    tokenAssignment()
+  });
+  //console.log(Token);
+
+  return (
+    <>
+      {Token === null ? (
+        <ScrollView>
+          <View>
+            <View style={styles.View}>
+              <Text style={styles.ProfileText}>پروفایل کاربری</Text>
+            </View>
+
+            <View style={styles.TextInput}>
+              <TextInput
+                placeholder="ایمیل"
+                value={email}
+                onChangeText={text => setEmail(text)}
+                autoCapitalize="none"
+                style={styles.TextInputstyle}
+              />
+            </View>
+
+            <View style={styles.TextInput}>
+              <TextInput
+                placeholder="پسورد"
+                secureTextEntry={true}
+                value={password}
+                onChangeText={text => setPassword(text)}
+                autoCapitalize="none"
+                place
+                style={styles.TextInputstyle}
+              />
+            </View>
+            <TouchableOpacity>
+              <View style={styles.forgotpasswordView}>
+                <Text style={styles.forgotpasswordText}>
+                  کلمه عبور خود را فراموش کرده ام ؟
+              </Text>
+              </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.button}
+              onPress={async () => {
+                await signin({ email, password });
+
+                await tokenAssignment()
+
+                if (Token) {
+                  navigation.navigate("Profile");
+                } else {
+                  // return alert("اشکال در ایمیل یا پسورد");
+                }
+              }}
+            >
+              <Text style={styles.buttonText}>ورود به حساب</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button2}
+              onPress={() => navigation.navigate("SignUp")}
+            >
+              <Text style={styles.buttonText}>ساخت حساب کاربری</Text>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
+      ) : (
+          <Profile />
+        )}
+    </>
+  )
 };
 
 export default Signin;

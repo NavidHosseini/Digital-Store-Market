@@ -20,7 +20,7 @@ const RecommendItem = ({ item }) => {
         >
           <Image
             source={{
-              uri: `http://192.168.1.4:1337${item.picCover.url}`,
+              uri: `http://192.168.1.7:1337${item.picCover.url}`,
             }}
             style={styles.image}
           />
