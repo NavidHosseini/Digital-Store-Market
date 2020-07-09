@@ -79,8 +79,6 @@ const Signin = () => {
 
                 if (Token) {
                   navigation.navigate("Profile");
-                } else {
-                  // return alert("اشکال در ایمیل یا پسورد");
                 }
               }}
             >
@@ -143,6 +141,8 @@ const styles = StyleSheet.create({
   },
   forgotpasswordView: {
     marginRight: 25,
+
+    marginLeft: 140
   },
   forgotpasswordText: {
     color: "#004e9b",

@@ -76,7 +76,9 @@ export const Provider = ({ children }) => {
           await AsyncStorage.setItem("token", res.jwt);
         })
         .catch(err => console.log(err));
-    } catch (err) { }
+    } catch (err) {
+
+    }
   };
 
   const updateUser = async ({ email, name, family, id }) => {

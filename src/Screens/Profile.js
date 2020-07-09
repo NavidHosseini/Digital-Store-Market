@@ -84,7 +84,7 @@ const Profile = () => {
         </View>
         <TouchableOpacity
           onPress={() => {
-            AsyncStorage.removeItem("token"), navigation.navigate("SignIn");
+            AsyncStorage.removeItem("token"), navigation.navigate("Home");
           }}
           style={styles.exitButton}
         >
