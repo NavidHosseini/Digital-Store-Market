@@ -84,10 +84,15 @@ const Signin = () => {
           style={styles.button}
           onPress={async () => {
             {
-              await signup({ email, password, username, password, name, family });
-              await signin({ email, password })
+              if (Token === null) {
+                await signup({ email, password, username, password, name, family });
+                await signin({ email, password })
 
-              navigation.navigate("Profile");
+                navigation.navigate("Profile")
+              }
+              else {
+                alert('لطفا ابتدا خارج شوید')
+              }
             }
           }}
         >

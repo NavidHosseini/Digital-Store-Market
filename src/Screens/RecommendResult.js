@@ -6,6 +6,7 @@ import {
   Image,
   AsyncStorage,
   TouchableOpacity,
+  Alert
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import Context from "../../Context";
@@ -18,10 +19,25 @@ const RecommendResult = ({ navigation }) => {
   const [Token, setToken] = useState();
 
   const data = route.params.data;
-
   const title = route.params.data.name;
   const url = route.params.data.picCover.url;
   const price = route.params.data.price;
+
+  const createTwoButtonAlert = () =>
+    Alert.alert(
+
+      "هشدار",
+      "لطفا ابتدا وارد شوید",
+      [
+        {
+          text: "بعدا",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "باشه", onPress: () => { navigation.navigate('SignIn') } }
+      ],
+      { cancelable: false },
+    );
 
   AsyncStorage.getItem("token").then(token => setToken(token));
   //console.log(Token);
@@ -48,7 +64,7 @@ const RecommendResult = ({ navigation }) => {
                 addCart({ title, url, price });
                 alert("به سبد خرید اضافه شد");
               } else {
-                alert("لطفا ابتدا وارد شوید");
+                { createTwoButtonAlert() }
               }
             }}
           >

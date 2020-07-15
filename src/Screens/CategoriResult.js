@@ -1,5 +1,5 @@
 import React from "react";
-import { View, FlatList } from "react-native";
+import { View, FlatList, TouchableOpacity } from "react-native";
 import CategoriResultComponent from "../Components/Categori/CategoriResultComponent";
 import { useRoute } from "@react-navigation/native";
 
@@ -21,7 +21,11 @@ const CategoriResult = () => {
         data={CustomData}
         keyExtractor={CustomData => CustomData.id.toString()}
         renderItem={({ item }) => {
-          return <CategoriResultComponent item={item} data={data} />;
+          return (
+
+            <CategoriResultComponent item={item} data={data} />
+
+          );
         }}
       />
     </View>

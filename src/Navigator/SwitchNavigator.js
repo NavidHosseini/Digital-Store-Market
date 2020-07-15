@@ -11,6 +11,7 @@ import TabNavigator from "./TabNavigator";
 import EditProfile from "../Screens/EditProfile";
 
 import { createStackNavigator } from "@react-navigation/stack";
+import CategoriProduct from "../Screens/CategoriProduct";
 
 
 const Stack = createStackNavigator();
@@ -53,6 +54,9 @@ const SwitchNavigator = () => {
       </Stack.Screen>
       <Stack.Screen name="Profile" options={{ headerShown: false }}>
         {props => <Profile {...props} />}
+      </Stack.Screen>
+      <Stack.Screen name="CategoriProduct" options={{ headerShown: false }}>
+        {props => <CategoriProduct {...props} />}
       </Stack.Screen>
 
     </Stack.Navigator>
