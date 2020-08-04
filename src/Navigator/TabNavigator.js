@@ -17,64 +17,62 @@ const Tab = createBottomTabNavigator();
 const TabNavigator = () => {
   return (
     <Tab.Navigator
-      initialRouteName="Home"
 
+      initialRouteName="Home"
       tabBarOptions={{
-        //activeBackgroundColor: "#ff7878",
         activeTintColor: "#ff4b0f",
         inactiveTintColor: 'black',
-
         showLabel: false,
         style: { backgroundColor: "#ffe6d6" }
       }}
     >
       <Tab.Screen
         name="SignIn"
+        component={Signin}
         options={{
-          tabBarLabel: "پروفایل",
           tabBarIcon: ({ color }) => {
-            return <ProfileButton tintColor={color} />;
+            return <ProfileButton tintColor={color} />
           },
         }}
-      >
-        {props => <Signin {...props} />}
-      </Tab.Screen>
+      />
+
 
       <Tab.Screen
         name="Home"
+        component={Home}
         options={{
-          tabBarLabel: "منو اصلی",
           tabBarIcon: ({ color }) => {
-            return <HomeButton tintColor={color} />;
-          },
+            return <HomeButton tintColor={color} />
+          }
         }}
-      >
-        {props => <Home {...props} />}
-      </Tab.Screen>
+      />
+
+
+
 
       <Tab.Screen
         name="Categori"
+        component={CategoriList}
         options={{
           tabBarLabel: "دسته یندی",
           tabBarIcon: ({ color }) => {
-            return <CategoriButton tintColor={color} />;
+            return <CategoriButton tintColor={color} />
           },
         }}
-      >
-        {props => <CategoriList {...props} />}
-      </Tab.Screen>
+      />
+
 
       <Tab.Screen
         name="Cart"
+        component={Cart}
         options={{
           tabBarLabel: "سبد خرید",
           tabBarIcon: ({ color }) => {
-            return <CartButton tintColor={color} />;
+            return <CartButton tintColor={color} />
           },
         }}
-      >
-        {props => <Cart {...props} />}
-      </Tab.Screen>
+      />
+
     </Tab.Navigator>
   );
 };
