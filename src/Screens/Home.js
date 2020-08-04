@@ -24,13 +24,13 @@ const Home = () => {
   };
   // console.log(filterResults("LapTop"))
   return (
-    <View style={{ flex: 1, padding: 10 }}>
+    <View style={{ flex: 1 }}>
       {isLoading ? (
         <View style={styles.ActivityIndicator}>
           <ActivityIndicator size="large" color="red" />
         </View>
       ) : (
-          <View>
+          <View style={{ backgroundColor: '#fbf3ee' }}>
             <View style={styles.welcomeStyle}>
               <Text style={styles.welcomeTitle}>
                 به فروشگاه دیجیتال خوش امدید
@@ -67,11 +67,12 @@ const styles = StyleSheet.create({
   },
   welcomeStyle: {
     alignItems: "center",
-    marginTop: 10,
+    marginTop: 15,
     marginBottom: 25,
     backgroundColor: "#ff8040",
     marginHorizontal: 25,
     padding: 8,
+    borderRadius: 15
   },
   ActivityIndicator: {
     alignItems: "center",

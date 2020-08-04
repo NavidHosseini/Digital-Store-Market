@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import Context from '../../Context';
 import { useRoute } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
@@ -12,12 +12,18 @@ const EditProfile = () => {
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [family, setFamily] = useState('');
+    const [PhoneNumber, setPhoneNumber] = useState('')
+    const [Address, setAddress] = useState('')
+    const [PostalCode, setPostalCode] = useState('')
 
 
     useEffect(() => {
         setEmail(`${emailUser}`),
             setFamily(`${familyUser}`),
-            setName(`${nameUser}`)
+            setName(`${nameUser}`),
+            setAddress(`${AddressUser}`),
+            setPostalCode(`${PostalCodeUser}`),
+            setPhoneNumber(`${PhoneNumberUser}`)
     }, [])
 
 
@@ -26,40 +32,63 @@ const EditProfile = () => {
     const nameUser = route.params.name
     const familyUser = route.params.family
     const emailUser = route.params.email
+    const PhoneNumberUser = route.params.PhoneNumber
+    const PostalCodeUser = route.params.PostalCode
+    const AddressUser = route.params.Address
+
 
     //console.log(emailUser)
 
     return (
         <View>
-            <TextInput placeholder="نام"
-                value={name}
-                onChangeText={text => setName(text)}
-                autoCapitalize="none"
-                style={styles.TextInput} />
+            <ScrollView>
+                <TextInput placeholder="نام"
+                    value={name}
+                    onChangeText={text => setName(text)}
+                    autoCapitalize="none"
+                    style={styles.TextInput} />
 
 
-            <TextInput placeholder="فامیل"
-                value={family}
-                onChangeText={text => setFamily(text)}
-                autoCapitalize="none"
-                style={styles.TextInput} />
+                <TextInput placeholder="فامیل"
+                    value={family}
+                    onChangeText={text => setFamily(text)}
+                    autoCapitalize="none"
+                    style={styles.TextInput} />
 
-            <TextInput placeholder="ایمیل"
-                value={email}
-                onChangeText={text => setEmail(text)}
-                autoCapitalize="none"
-                style={styles.TextInput} />
+                <TextInput placeholder="ایمیل"
+                    value={email}
+                    onChangeText={text => setEmail(text)}
+                    autoCapitalize="none"
+                    style={styles.TextInput} />
+
+                <TextInput placeholder="شماره موبایل"
+                    value={PhoneNumber}
+                    onChangeText={text => setPhoneNumber(text)}
+                    autoCapitalize="none"
+                    style={styles.TextInput} />
+
+                <TextInput placeholder="کد پستی"
+                    value={PostalCode}
+                    onChangeText={text => setPostalCode(text)}
+                    autoCapitalize="none"
+                    style={styles.TextInput} />
+
+                <TextInput placeholder="ادرس"
+                    value={Address}
+                    onChangeText={text => setAddress(text)}
+                    autoCapitalize="none"
+                    style={styles.TextInput} />
 
 
-            <TouchableOpacity style={styles.Button}
-                onPress={async () => {
-                    await updateUser({ email, name, family, id })
-                        , await navigation.navigate('Profile')
-                }} >
-                <Text style={styles.TextButton}> ویرایش</Text>
-            </TouchableOpacity>
+                <TouchableOpacity style={styles.Button}
+                    onPress={async () => {
+                        await updateUser({ email, name, family, id, PhoneNumber, Address, PostalCode })
+                            , navigation.navigate('Profile')
+                    }} >
+                    <Text style={styles.TextButton}> ویرایش</Text>
+                </TouchableOpacity>
 
-
+            </ScrollView>
 
         </View>
     );
@@ -72,6 +101,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#cccccc",
         borderRadius: 10,
         margin: 20,
+        textAlign: 'right'
 
     },
     Button: {
@@ -79,10 +109,11 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         backgroundColor: 'red',
         alignItems: 'center',
-        marginHorizontal: 15
+        marginHorizontal: 15,
+        marginBottom: 50
     },
     TextButton: {
         color: '#fff',
-        fontFamily: 'Sans'
+        fontFamily: 'Sans',
     }
 })

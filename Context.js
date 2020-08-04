@@ -81,7 +81,7 @@ export const Provider = ({ children }) => {
     }
   };
 
-  const updateUser = async ({ email, name, family, id }) => {
+  const updateUser = async ({ email, name, family, id, Address, PhoneNumber, PostalCode }) => {
     try {
       const token = await AsyncStorage.getItem("token");
       await fetch(`${baseUrl}/users/${id}`, {
@@ -95,6 +95,9 @@ export const Provider = ({ children }) => {
           email: email,
           name: name,
           family: family,
+          PhoneNumber: PhoneNumber,
+          Address: Address,
+          PostalCode: PostalCode
         }),
       })
 

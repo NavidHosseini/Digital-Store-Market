@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import Context from "../../../Context";
 import { useNavigation } from "@react-navigation/native";
@@ -6,8 +6,11 @@ import { useNavigation } from "@react-navigation/native";
 const CategoriResultComponent = ({ item }) => {
   const navigation = useNavigation();
 
+  // const [Stock, setStock] = useState('')
+
   const { baseUrl } = useContext(Context)
-  //console.log(item.detail)
+  //console.log(item.stock)
+
   return (
     <TouchableOpacity onPress={() => navigation.navigate('CategoriProduct', {
       id: item.id,
@@ -19,12 +22,16 @@ const CategoriResultComponent = ({ item }) => {
     })} >
       <View style={styles.View1} >
         <View style={styles.View2}>
+
+
           <View style={styles.View3}>
             <Text style={styles.Text}>{item.name}</Text>
             <Text style={styles.Text}> نام محصول :  </Text>
           </View>
-          <Text> {item.id} </Text>
-          <Image source={{ uri: `${baseUrl}${item.picCover.url}` }} style={styles.pic} />
+
+          <Image
+            source={{ uri: `${baseUrl}${item.picCover.url}` }}
+            style={styles.pic} />
         </View>
       </View>
     </TouchableOpacity>
@@ -34,9 +41,10 @@ export default CategoriResultComponent;
 
 const styles = StyleSheet.create({
   pic: {
-    width: "95%",
-    height: 120,
-    resizeMode: 'center'
+    width: '100%',
+    height: 150,
+    resizeMode: 'center',
+    borderRadius: 12
   },
   View2: {
     alignItems: 'center',
@@ -44,12 +52,17 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   View1: {
-    borderWidth: 2,
+    borderWidth: 1,
     borderColor: 'red',
-    marginVertical: 10
+    marginVertical: 10,
+    borderRadius: 15,
+    marginHorizontal: 10,
+    backgroundColor: '#ffe4db',
+    //opacity: 0.7
   },
   View3: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    marginBottom: 10
   },
   Text: {
     fontFamily: 'Sans',

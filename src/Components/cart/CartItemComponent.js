@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     marginBottom: 25,
     marginHorizontal: 12,
     marginTop: 25,
-    backgroundColor: "#d4d4d4",
+    backgroundColor: "#ffe4db",
   },
   View2: {
     flexDirection: "row",
@@ -53,7 +53,9 @@ const styles = StyleSheet.create({
   },
   image: {
     height: 100,
-    width: 100
+    width: 100,
+    marginTop: 15,
+    marginLeft: 13
   },
   Text: {
     textAlign: "right",
@@ -68,7 +70,8 @@ const styles = StyleSheet.create({
   },
   trash: {
     alignItems: "center",
-    backgroundColor: "#ff9494"
+    backgroundColor: "#fc9572",
+    marginHorizontal: 10
   },
   icon: {
     fontSize: 38

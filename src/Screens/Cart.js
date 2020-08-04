@@ -12,18 +12,19 @@ import CartItemComponent from "../Components/cart/CartItemComponent";
 const Cart = () => {
   const { cartProduct } = useContext(Context);
   return (
-    <View>
+    <View style={styles.View}>
       <FlatList
         data={cartProduct}
         keyExtractor={state => state.title}
         renderItem={({ item }) => {
-          return <CartItemComponent item={item} />;
+          return (
+            <CartItemComponent item={item} />
+          )
         }}
       />
       <TouchableOpacity
         style={styles.paymentButton}
-        onPress={() => alert("پرداخت با موفقیت انجام شد")}
-      >
+        onPress={() => alert("پرداخت با موفقیت انجام شد")}>
         <Text style={styles.paymentText}>پرداخت</Text>
       </TouchableOpacity>
     </View>
@@ -33,19 +34,18 @@ export default Cart;
 
 const styles = StyleSheet.create({
   View: {
-    marginBottom: 25,
-    marginHorizontal: 12,
-    marginTop: 25,
-    backgroundColor: "#d4d4d4",
+    flex: 1
   },
   paymentButton: {
     marginHorizontal: 12,
     alignItems: "center",
-    backgroundColor: "#40e954",
+    backgroundColor: "#ff5050",
     padding: 17,
-    marginBottom: 20,
+    //marginBottom: 60,
   },
   paymentText: {
     fontFamily: "Sans",
+    color: '#fff',
+    fontSize: 16
   },
 });

@@ -14,7 +14,7 @@ const CategoriResult = () => {
     return res;
   });
 
-  //console.log(cd);
+  //console.log(CustomData);
   return (
     <View>
       <FlatList

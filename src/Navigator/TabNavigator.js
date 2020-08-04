@@ -21,8 +21,9 @@ const TabNavigator = () => {
 
       tabBarOptions={{
         //activeBackgroundColor: "#ff7878",
-        activeTintColor: "red",
+        activeTintColor: "#ff4b0f",
         inactiveTintColor: 'black',
+
         showLabel: false,
         style: { backgroundColor: "#ffe6d6" }
       }}
