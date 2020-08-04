@@ -1,6 +1,5 @@
 import React, { useReducer, useState } from "react";
-import { AsyncStorage } from "react-native";
-
+import AsyncStorage from '@react-native-community/async-storage'
 const Context = React.createContext();
 
 const reducer = (state, action) => {
@@ -104,7 +103,7 @@ export const Provider = ({ children }) => {
 
     } catch (err) { }
   };
-  const baseUrl = "http://192.168.1.8:1337"
+  const baseUrl = "http://192.168.1.4:1337"
 
   return (
     <Context.Provider

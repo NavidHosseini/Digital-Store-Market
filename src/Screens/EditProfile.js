@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import Context from '../../Context';
-import { useRoute } from "@react-navigation/native";
-import { useNavigation } from "@react-navigation/native";
+import { useRoute, useNavigation } from "@react-navigation/native";
 
 
 const EditProfile = () => {

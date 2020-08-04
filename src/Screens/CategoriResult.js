@@ -1,5 +1,5 @@
 import React from "react";
-import { View, FlatList, TouchableOpacity } from "react-native";
+import { View, FlatList } from "react-native";
 import CategoriResultComponent from "../Components/Categori/CategoriResultComponent";
 import { useRoute } from "@react-navigation/native";
 

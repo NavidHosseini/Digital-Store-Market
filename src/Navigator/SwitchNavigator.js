@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 
-import { AsyncStorage } from "react-native";
 
 import CategoriResult from "../Screens/CategoriResult";
 import Profile from "../Screens/Profile";
@@ -17,9 +16,6 @@ import CategoriProduct from "../Screens/CategoriProduct";
 const Stack = createStackNavigator();
 
 const SwitchNavigator = () => {
-  const [Token, setToken] = useState();
-
-  AsyncStorage.getItem("token").then(token => setToken(token));
 
 
   return (

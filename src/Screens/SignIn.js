@@ -6,9 +6,10 @@ import {
   View,
   Text,
   ScrollView,
-  AsyncStorage,
+
 } from "react-native";
 import Context from "../../Context";
+import AsyncStorage from '@react-native-community/async-storage';
 import Profile from "./Profile";
 import { useNavigation } from "@react-navigation/native";
 

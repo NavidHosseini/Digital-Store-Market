@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import {
-  AsyncStorage,
+
   StyleSheet,
   TextInput,
   TouchableOpacity,
@@ -9,6 +9,7 @@ import {
   ScrollView,
 } from "react-native";
 import Context from "../../Context";
+import AsyncStorage from '@react-native-community/async-storage';
 import { useNavigation } from "@react-navigation/native";
 const Signin = () => {
   const navigation = useNavigation();

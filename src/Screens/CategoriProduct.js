@@ -4,13 +4,14 @@ import {
     Text,
     View,
     Image,
-    AsyncStorage,
+    ScrollView,
     TouchableOpacity,
     Alert
 } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
 import { useRoute } from "@react-navigation/native";
 import Context from "../../Context";
+import AsyncStorage from '@react-native-community/async-storage';
+
 
 const CategoriProduct = ({ navigation }) => {
     const route = useRoute();

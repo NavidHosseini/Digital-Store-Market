@@ -4,11 +4,11 @@ import {
   Text,
   View,
   Image,
-  AsyncStorage,
   TouchableOpacity,
-  Alert
+  Alert,
+  ScrollView
 } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
+import AsyncStorage from '@react-native-community/async-storage';
 import Context from "../../Context";
 import { useRoute } from "@react-navigation/native";
 
