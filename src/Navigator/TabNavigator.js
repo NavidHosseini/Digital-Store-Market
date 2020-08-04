@@ -8,7 +8,7 @@ import ProfileButton from "../Components/ButtonBar/ProfileButton";
 import Cart from "../Screens/Cart";
 import CategoriList from "../Screens/CategoriList";
 import Home from "../Screens/Home";
-import Signin from "../Screens/SignIn";
+import Auth from "./Auth";
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
@@ -28,15 +28,13 @@ const TabNavigator = () => {
     >
       <Tab.Screen
         name="SignIn"
-        component={Signin}
+        component={Auth}
         options={{
           tabBarIcon: ({ color }) => {
             return <ProfileButton tintColor={color} />
           },
         }}
       />
-
-
       <Tab.Screen
         name="Home"
         component={Home}
@@ -47,14 +45,10 @@ const TabNavigator = () => {
         }}
       />
 
-
-
-
       <Tab.Screen
         name="Categori"
         component={CategoriList}
         options={{
-          tabBarLabel: "دسته یندی",
           tabBarIcon: ({ color }) => {
             return <CategoriButton tintColor={color} />
           },
