@@ -4,7 +4,7 @@ import RecommendItem from "../Recommend/RecommendItem";
 
 const Recommend = ({ title, result }) => {
   return (
-    <View>
+    <View style={{ borderColor: 'black', borderBottomWidth: 1 }}>
       <Text style={styles.text}>{title}</Text>
 
       <FlatList

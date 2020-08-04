@@ -22,9 +22,9 @@ const CategoriProduct = ({ navigation }) => {
     const url = route.params.picUrl
     const price = route.params.price;
     const detail = route.params.detail
+
     const ButtonAlert = () =>
         Alert.alert(
-
             "هشدار",
             "لطفا ابتدا وارد شوید",
             [

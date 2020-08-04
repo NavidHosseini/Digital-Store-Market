@@ -3,7 +3,6 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
   AsyncStorage,
   TouchableOpacity
 } from "react-native";
@@ -19,7 +18,7 @@ const Profile = () => {
   useEffect(() => {
     const dataFetch = async () => {
       const token = await AsyncStorage.getItem("token")
-      // console.log(token)
+      console.log(token)
       fetch(`${baseUrl}/users/me`, {
         method: 'GET',
         headers: {
@@ -37,74 +36,77 @@ const Profile = () => {
   }, []);
 
 
-  if (data) {
-    return (
-      <View>
-        <View style={styles.profileTextView}>
-          <Text style={styles.profileText}>پروفایل کاربر</Text>
-        </View>
-        <View style={{ alignItems: "flex-end" }}>
-          <View style={{ flexDirection: "row" }}>
-            <View style={styles.ViewText} >
 
-              <Text style={styles.profilename}>
-                نام و نام خانوادگی :
+  return (
+    <View>
+      <View style={styles.profileTextView}>
+        <Text style={styles.profileText}>پروفایل کاربر</Text>
+      </View>
+      <View style={{ alignItems: "flex-end" }}>
+        <View style={{ flexDirection: "row" }}>
+          <View style={styles.ViewText} >
+
+            <Text style={styles.profilename}>
+              نام و نام خانوادگی :
                 {`${data.name} ${data.family}`}
-              </Text>
-            </View>
-
+            </Text>
           </View>
-          <View
-            style={styles.ViewText2}
-          >
 
-            <Text style={styles.email}>ایمیل : {data.email}</Text>
-          </View>
-          <View
-            style={styles.ViewText2}
-          >
-            <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => navigation.navigate('EditProfile', {
+        </View>
+        <View style={styles.ViewText2}>
+
+          <Text style={styles.email}>ایمیل : {data.email}</Text>
+        </View>
+        <View style={styles.ViewText2} >
+
+          <Text style={styles.email}>شماره موبایل : {data.PhoneNumber}</Text>
+        </View>
+        <View style={styles.ViewText2}>
+
+          <Text style={styles.email}>کد پستی : {data.PostalCode}</Text>
+        </View>
+        <View style={styles.ViewText2}>
+
+          <Text style={styles.email}>آدرس : {data.Address}</Text>
+        </View>
+        <View style={styles.ViewText2} >
+          <TouchableOpacity style={{ flexDirection: 'row' }}
+            onPress={() => navigation.navigate('EditProfile', {
               id: data.id,
               name: data.name,
               family: data.family,
-              email: data.email
+              email: data.email,
+              PhoneNumber: data.PhoneNumber,
+              PostalCode: data.PostalCode,
+              Address: data.Address
+
+
             })}>
 
-              <MaterialCommunityIcons name="pencil" style={styles.icon} />
-              <Text style={styles.profilename}>
-                ویرایش پروفایل
+            <MaterialCommunityIcons name="pencil" style={styles.icon} />
+            <Text style={styles.profilename}>
+              ویرایش پروفایل
             </Text>
-            </TouchableOpacity>
+          </TouchableOpacity>
 
-            <Text>
+          <Text>
 
-            </Text>
-          </View>
-
+          </Text>
         </View>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate("Home");
-          }}
-          style={styles.exitButton}
-        >
-          <Text>خروج</Text>
-        </TouchableOpacity>
+
       </View>
-    );
-  } else {
-    return (
-      <View>
-        <Button
-          title="خروج"
-          onPress={() => {
-            AsyncStorage.removeItem("token"), navigation.navigate("SignIn");
-          }}
-        />
-      </View>
-    );
-  }
-};
+      <TouchableOpacity
+        onPress={() => {
+          AsyncStorage.clear(), navigation.navigate("Home");
+        }}
+        style={styles.exitButton}
+      >
+        <Text>خروج</Text>
+      </TouchableOpacity>
+    </View>
+  )
+}
+
 export default Profile;
 
 const styles = StyleSheet.create({

@@ -18,20 +18,21 @@ const TabNavigator = () => {
   return (
     <Tab.Navigator
       initialRouteName="Home"
+
       tabBarOptions={{
-        activeBackgroundColor: "#ff7878",
-        style: {
-          backgroundColor: "#fdfdfd",
-        },
+        //activeBackgroundColor: "#ff7878",
+        activeTintColor: "red",
+        inactiveTintColor: 'black',
+        showLabel: false,
+        style: { backgroundColor: "#ffe6d6" }
       }}
     >
       <Tab.Screen
         name="SignIn"
         options={{
           tabBarLabel: "پروفایل",
-
-          tabBarIcon: () => {
-            return <ProfileButton />;
+          tabBarIcon: ({ color }) => {
+            return <ProfileButton tintColor={color} />;
           },
         }}
       >
@@ -42,8 +43,8 @@ const TabNavigator = () => {
         name="Home"
         options={{
           tabBarLabel: "منو اصلی",
-          tabBarIcon: () => {
-            return <HomeButton />;
+          tabBarIcon: ({ color }) => {
+            return <HomeButton tintColor={color} />;
           },
         }}
       >
@@ -54,8 +55,8 @@ const TabNavigator = () => {
         name="Categori"
         options={{
           tabBarLabel: "دسته یندی",
-          tabBarIcon: () => {
-            return <CategoriButton />;
+          tabBarIcon: ({ color }) => {
+            return <CategoriButton tintColor={color} />;
           },
         }}
       >
@@ -66,8 +67,8 @@ const TabNavigator = () => {
         name="Cart"
         options={{
           tabBarLabel: "سبد خرید",
-          tabBarIcon: () => {
-            return <CartButton />;
+          tabBarIcon: ({ color }) => {
+            return <CartButton tintColor={color} />;
           },
         }}
       >

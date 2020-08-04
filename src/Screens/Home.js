@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flex: 1,
   },
-  background: {
-    backgroundColor: "#fbeee4",
-  },
+  // background: {
+  //   backgroundColor: "#f9e2d2",
+  // },
 });
