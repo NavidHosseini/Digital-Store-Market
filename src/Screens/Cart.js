@@ -23,6 +23,7 @@ const Cart = () => {
           )
         }}
       />
+
       <TouchableOpacity
         style={styles.paymentButton}
         onPress={() => alert("پرداخت با موفقیت انجام شد")}>

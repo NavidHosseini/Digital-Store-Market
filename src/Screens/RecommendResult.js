@@ -61,10 +61,11 @@ const RecommendResult = ({ navigation }) => {
           />
         </View>
         <View style={styles.ViewText}>
-          <Text style={styles.TextStyle}>{title}: نام محصول</Text>
-          <Text style={styles.TextStyle}>قیمت :{price} تومان </Text>
+          <Text style={styles.ProductName}>{title}: نام محصول</Text>
           <Text style={styles.TextStyle}>توضیحات :</Text>
           <Text style={styles.TextStyle}>{data.detail}</Text>
+          <Text style={styles.TextStyle}>قیمت :{price} تومان </Text>
+
           <View>
             {StockNull ?
               (<Text style={styles.StockNull}>{StockNull}</Text>)
@@ -136,7 +137,13 @@ const styles = StyleSheet.create({
     color: 'green',
     fontFamily: 'Sans',
     marginBottom: 5,
-    fontSize: 18
+    fontSize: 18,
+    textAlign: 'center',
 
+  },
+  ProductName: {
+    textAlign: "right",
+    fontFamily: "SansBold",
+    fontSize: 15,
   }
 })

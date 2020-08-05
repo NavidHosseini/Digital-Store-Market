@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useState, useEffect } from "react"
 import {
     StyleSheet,
     Text,
@@ -19,6 +19,8 @@ const CategoriProduct = ({ navigation }) => {
     const { addCart, baseUrl } = useContext(Context)
 
     const [Token, setToken] = useState()
+    const [StockNull, setStockNull] = useState('')
+    const [StockTrue, setStockTrue] = useState('')
 
     const route = useRoute()
 
@@ -26,6 +28,16 @@ const CategoriProduct = ({ navigation }) => {
     const url = route.params.picUrl
     const price = route.params.price
     const detail = route.params.detail
+    const item = route.params.item
+
+    useEffect(() => {
+        if (item.stock === null) {
+            setStockNull('عدم موجودی')
+        } else {
+            setStockTrue('موجود در انبار')
+        }
+    }, [])
+
 
     const ButtonAlert = () =>
         Alert.alert(
@@ -51,26 +63,33 @@ const CategoriProduct = ({ navigation }) => {
                 <View>
                     <Image
                         style={styles.Image}
-                        source={{
-                            uri: `${baseUrl}${url}`,
-                        }}
+                        source={{ uri: `${baseUrl}${url}` }}
                     />
                 </View>
                 <View style={styles.ViewText}>
-                    <View style={{ alignItems: 'center' }}>
-                        <Text style={styles.ProductName}>نام محصول :</Text>
+                    <View>
+                        <Text style={styles.ProductName}>نام محصول : {title}</Text>
                     </View>
-                    <Text style={styles.TextStyle}>{title}</Text>
-
-                    <Text style={styles.TextStyle}>قیمت :{price} تومان </Text>
                     <Text style={styles.TextStyle}>توضیحات :</Text>
                     <Text style={styles.TextStyle}>{detail}</Text>
+                    <Text style={styles.TextStyle}>قیمت :{price} تومان </Text>
+                    <View>
+                        {StockNull ?
+                            (<Text style={styles.StockNull}>{StockNull}</Text>)
+                            :
+                            (<Text style={styles.StockTrue}>{StockTrue}</Text>)}
+                    </View>
                     <TouchableOpacity
 
                         onPress={() => {
                             if (Token) {
-                                addCart({ title, url, price })
-                                alert("به سبد خرید اضافه شد")
+                                if (StockTrue) {
+                                    addCart({ title, url, price })
+                                    alert("به سبد خرید اضافه شد")
+                                } else {
+                                    alert('موجودی تمام شده')
+                                }
+
                             } else {
                                 { ButtonAlert() }
                             }
@@ -116,5 +135,21 @@ const styles = StyleSheet.create({
         textAlign: "right",
         fontFamily: "SansBold",
         fontSize: 15,
-    }
+    },
+    StockNull: {
+        color: 'red',
+        fontFamily: 'Sans',
+        marginBottom: 5,
+        textDecorationLine: 'line-through',
+        textAlign: 'center',
+        fontSize: 18
+    },
+    StockTrue: {
+        color: 'green',
+        fontFamily: 'Sans',
+        marginBottom: 5,
+        fontSize: 18,
+        textAlign: 'center',
+
+    },
 })

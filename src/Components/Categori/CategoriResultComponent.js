@@ -27,7 +27,8 @@ const CategoriResultComponent = ({ item }) => {
       name: item.name,
       price: item.price,
       picUrl: item.picCover.url,
-      detail: item.detail
+      detail: item.detail,
+      item: item
 
     })} >
       <View style={styles.View1} >
