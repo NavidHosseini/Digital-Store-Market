@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from "react"
 import {
-
   StyleSheet,
   TextInput,
   TouchableOpacity,

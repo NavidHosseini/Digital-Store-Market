@@ -8,17 +8,17 @@ import {
 } from "react-native"
 import FontAwesome from "react-native-vector-icons/FontAwesome"
 import Context from "../../../Context"
-
+import config from '../../../config'
 const CartItemComponent = ({ item }) => {
 
-  const { deleteCart, baseUrl } = useContext(Context)
+  const { deleteCart } = useContext(Context)
 
   return (
     <View style={styles.View}>
       <View style={styles.View2} >
         <Image
           style={styles.image}
-          source={{ uri: `${baseUrl}${item.url}` }}
+          source={{ uri: `${config.BASE_URL}${item.url}` }}
         />
 
         <Text style={styles.Text}>

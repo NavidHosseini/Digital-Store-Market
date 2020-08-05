@@ -10,13 +10,14 @@ import {
 }
     from "react-native"
 import { useRoute } from "@react-navigation/native"
-import Context from "../../Context"
 import AsyncStorage from '@react-native-community/async-storage'
+import Context from '../../Context'
 
+import config from '../../config'
 
 const CategoriProduct = ({ navigation }) => {
 
-    const { addCart, baseUrl } = useContext(Context)
+    const { addCart } = useContext(Context)
 
     const [Token, setToken] = useState()
     const [StockNull, setStockNull] = useState('')
@@ -63,7 +64,7 @@ const CategoriProduct = ({ navigation }) => {
                 <View>
                     <Image
                         style={styles.Image}
-                        source={{ uri: `${baseUrl}${url}` }}
+                        source={{ uri: `${config.BASE_URL}${url}` }}
                     />
                 </View>
                 <View style={styles.ViewText}>

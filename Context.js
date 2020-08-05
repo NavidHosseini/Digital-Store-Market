@@ -1,5 +1,6 @@
 import React, { useReducer, useState } from "react";
 import AsyncStorage from '@react-native-community/async-storage'
+import config from './config'
 const Context = React.createContext();
 
 const reducer = (state, action) => {
@@ -35,7 +36,7 @@ export const Provider = ({ children }) => {
 
   const signup = async ({ email, password, name, username, family }) => {
     try {
-      await fetch(`${baseUrl}/auth/local/register`, {
+      await fetch(`${config.BASE_URL}/auth/local/register`, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -57,7 +58,7 @@ export const Provider = ({ children }) => {
 
   const signin = async ({ email, password }) => {
     try {
-      await fetch(`${baseUrl}/auth/local`, {
+      await fetch(`${config.BASE_URL}/auth/local`, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -83,7 +84,7 @@ export const Provider = ({ children }) => {
   const updateUser = async ({ email, name, family, id, Address, PhoneNumber, PostalCode }) => {
     try {
       const token = await AsyncStorage.getItem("token");
-      await fetch(`${baseUrl}/users/${id}`, {
+      await fetch(`${config.BASE_URL}/users/${id}`, {
         method: "PUT",
         headers: {
           Accept: "application/json",
@@ -103,11 +104,10 @@ export const Provider = ({ children }) => {
 
     } catch (err) { }
   };
-  const baseUrl = "http://192.168.1.8:1337"
 
   return (
     <Context.Provider
-      value={{ cartProduct, addCart, deleteCart, signin, signup, updateUser, baseUrl }}
+      value={{ cartProduct, addCart, deleteCart, signin, signup, updateUser }}
     >
       {children}
     </Context.Provider>

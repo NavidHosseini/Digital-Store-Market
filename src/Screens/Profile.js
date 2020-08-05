@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react"
+import React, { useEffect, useState } from "react"
 import {
   StyleSheet,
   Text,
@@ -10,7 +10,7 @@ import {
 
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons"
 import { useNavigation } from "@react-navigation/native"
-import Context from "../../Context"
+import config from '../../config'
 import AsyncStorage from '@react-native-community/async-storage'
 
 
@@ -19,13 +19,12 @@ const Profile = () => {
   const navigation = useNavigation()
   const [data, setData] = useState({})
 
-  const { baseUrl } = useContext(Context)
 
   useEffect(() => {
     const dataFetch = async () => {
       const token = await AsyncStorage.getItem("token")
-      console.log(token)
-      fetch(`${baseUrl}/users/me`, {
+      // console.log(token)
+      fetch(`${config.BASE_URL}/users/me`, {
         method: 'GET',
         headers: {
           Accept: 'application/json',
@@ -54,7 +53,7 @@ const Profile = () => {
             <View style={styles.ViewImage}>
               <Image
                 style={styles.image}
-                source={{ uri: 'https://nihongocenter.com/wp-content/uploads/2017/08/laurence-rideout.jpg' }} />
+                source={{ uri: 'https://preview.keenthemes.com/metronic-v4/theme/assets/pages/media/profile/profile_user.jpg' }} />
             </View>
             <View style={styles.ViewText} >
 

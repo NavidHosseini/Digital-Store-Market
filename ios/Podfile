@@ -81,6 +81,8 @@ target 'MarketApp' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
+  pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
+
   target 'MarketAppTests' do
     inherit! :complete
     # Pods for testing

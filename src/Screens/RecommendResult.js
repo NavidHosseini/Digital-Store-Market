@@ -11,10 +11,10 @@ import {
 import AsyncStorage from '@react-native-community/async-storage'
 import Context from "../../Context"
 import { useRoute } from "@react-navigation/native"
-
+import config from '../../config'
 const RecommendResult = ({ navigation }) => {
   const route = useRoute()
-  const { addCart, baseUrl } = useContext(Context)
+  const { addCart } = useContext(Context)
 
   const [Token, setToken] = useState('')
   const [StockNull, setStockNull] = useState('')
@@ -57,7 +57,7 @@ const RecommendResult = ({ navigation }) => {
         <View>
           <Image
             style={styles.Image}
-            source={{ uri: `${baseUrl}${url}` }}
+            source={{ uri: `${config.BASE_URL}${url}` }}
           />
         </View>
         <View style={styles.ViewText}>

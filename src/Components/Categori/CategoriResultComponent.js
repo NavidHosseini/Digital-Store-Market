@@ -1,8 +1,7 @@
-import React, { useContext, useState, useEffect } from "react"
-
+import React, { useState, useEffect } from "react"
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native"
-import Context from "../../../Context"
 import { useNavigation } from "@react-navigation/native"
+import config from '../../../config'
 
 const CategoriResultComponent = ({ item }) => {
 
@@ -11,7 +10,6 @@ const CategoriResultComponent = ({ item }) => {
   const [StockNull, setStockNull] = useState('')
   const [StockTrue, setStockTrue] = useState('')
 
-  const { baseUrl } = useContext(Context)
 
   useEffect(() => {
     if (item.stock === null) {
@@ -45,7 +43,7 @@ const CategoriResultComponent = ({ item }) => {
               (<Text style={styles.StockTrue}>{StockTrue}</Text>)}
           </View>
           <Image
-            source={{ uri: `${baseUrl}${item.picCover.url}` }}
+            source={{ uri: `${config.BASE_URL}${item.picCover.url}` }}
             style={styles.pic} />
         </View>
       </View>

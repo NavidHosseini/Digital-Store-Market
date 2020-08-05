@@ -1,19 +1,17 @@
-import React, { useState, useEffect, useContext } from "react"
+import React, { useState, useEffect } from "react"
 import { StyleSheet, View, ScrollView, ActivityIndicator } from "react-native"
 
 import CategoriComponent from "../Components/Categori/CategoriComponent"
-import Context from "../../Context"
-
+import config from '../../config'
 const CategoriList = () => {
 
   const [isLoading, setLoading] = useState(true)
   const [data, setData] = useState([])
 
-  const { baseUrl } = useContext(Context)
 
   useEffect(() => {
 
-    fetch(`${baseUrl}/categories`)
+    fetch(`${config.BASE_URL}/categories`)
       .then(response => response.json())
       .then(json => setData(json))
       .catch(error => console.error(error))

@@ -1,17 +1,15 @@
-import React, { useState, useEffect, useContext } from "react"
+import React, { useState, useEffect } from "react"
 import { StyleSheet, Text, View, ActivityIndicator } from "react-native"
 import { ScrollView } from "react-native-gesture-handler"
 import Recommend from "../Components/Recommend/Recommend"
-import Context from "../../Context"
-
+import config from '../../config'
 const Home = () => {
   const [isLoading, setLoading] = useState(true)
   const [data, setData] = useState([])
-  const { baseUrl } = useContext(Context)
 
   useEffect(() => {
 
-    fetch(`${baseUrl}/digital-store-markets`)
+    fetch(`${config.BASE_URL}/digital-store-markets`)
       .then(response => response.json())
       .then(json => setData(json))
       .catch(error => console.log(error))
