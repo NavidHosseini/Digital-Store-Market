@@ -1,16 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext } from "react"
 import {
   StyleSheet,
   View,
   FlatList,
   TouchableOpacity,
   Text,
-} from "react-native";
-import Context from "../../Context";
-import CartItemComponent from "../Components/cart/CartItemComponent";
+} from "react-native"
+import Context from "../../Context"
+import CartItemComponent from "../Components/cart/CartItemComponent"
+
 
 const Cart = () => {
-  const { cartProduct } = useContext(Context);
+  const { cartProduct } = useContext(Context)
   return (
     <View style={styles.View}>
       <FlatList
@@ -28,9 +29,9 @@ const Cart = () => {
         <Text style={styles.paymentText}>پرداخت</Text>
       </TouchableOpacity>
     </View>
-  );
-};
-export default Cart;
+  )
+}
+export default Cart
 
 const styles = StyleSheet.create({
   View: {
@@ -48,4 +49,4 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 16
   },
-});
+})

@@ -103,7 +103,7 @@ export const Provider = ({ children }) => {
 
     } catch (err) { }
   };
-  const baseUrl = "http://192.168.1.4:1337"
+  const baseUrl = "http://192.168.1.8:1337"
 
   return (
     <Context.Provider

@@ -1,23 +1,22 @@
-import React from "react";
+import React from "react"
 
-import CartButton from "../Components/ButtonBar/CartButton";
-import CategoriButton from "../Components/ButtonBar/CategoriButton";
-import HomeButton from "../Components/ButtonBar/HomeButton";
-import ProfileButton from "../Components/ButtonBar/ProfileButton";
+import CartButton from "../Components/ButtonBar/CartButton"
+import CategoriButton from "../Components/ButtonBar/CategoriButton"
+import HomeButton from "../Components/ButtonBar/HomeButton"
+import ProfileButton from "../Components/ButtonBar/ProfileButton"
 
-import Cart from "../Screens/Cart";
-import CategoriList from "../Screens/CategoriList";
-import Home from "../Screens/Home";
-import Auth from "./Auth";
+import Cart from "../Screens/Cart"
+import CategoriList from "../Screens/CategoriList"
+import Home from "../Screens/Home"
+import Auth from "./Auth"
 
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator()
 
 const TabNavigator = () => {
   return (
     <Tab.Navigator
-
       initialRouteName="Home"
       tabBarOptions={{
         activeTintColor: "#ff4b0f",
@@ -55,7 +54,6 @@ const TabNavigator = () => {
         }}
       />
 
-
       <Tab.Screen
         name="Cart"
         component={Cart}
@@ -68,7 +66,7 @@ const TabNavigator = () => {
       />
 
     </Tab.Navigator>
-  );
-};
+  )
+}
 
-export default TabNavigator;
+export default TabNavigator

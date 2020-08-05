@@ -1,17 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext } from "react"
 import {
   StyleSheet,
   Text,
   View,
   Image,
   TouchableOpacity
-} from "react-native";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
-import Context from "../../../Context";
+} from "react-native"
+import FontAwesome from "react-native-vector-icons/FontAwesome"
+import Context from "../../../Context"
 
 const CartItemComponent = ({ item }) => {
 
-  const { deleteCart, baseUrl } = useContext(Context);
+  const { deleteCart, baseUrl } = useContext(Context)
 
   return (
     <View style={styles.View}>
@@ -36,9 +36,9 @@ const CartItemComponent = ({ item }) => {
         <FontAwesome name="trash" style={styles.icon} />
       </TouchableOpacity>
     </View>
-  );
-};
-export default CartItemComponent;
+  )
+}
+export default CartItemComponent
 
 const styles = StyleSheet.create({
   View: {
@@ -76,4 +76,4 @@ const styles = StyleSheet.create({
   icon: {
     fontSize: 38
   }
-});
+})

@@ -1,16 +1,18 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
-import Context from '../../Context';
-import { useRoute, useNavigation } from "@react-navigation/native";
+import React, { useEffect, useState, useContext } from 'react'
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, ScrollView } from 'react-native'
+import Context from '../../Context'
+import { useRoute, useNavigation } from "@react-navigation/native"
 
 
 const EditProfile = () => {
-    const navigation = useNavigation();
-    const { updateUser } = useContext(Context);
 
-    const [email, setEmail] = useState('');
-    const [name, setName] = useState('');
-    const [family, setFamily] = useState('');
+    const navigation = useNavigation()
+
+    const { updateUser } = useContext(Context)
+
+    const [email, setEmail] = useState('')
+    const [name, setName] = useState('')
+    const [family, setFamily] = useState('')
     const [PhoneNumber, setPhoneNumber] = useState('')
     const [Address, setAddress] = useState('')
     const [PostalCode, setPostalCode] = useState('')
@@ -26,7 +28,7 @@ const EditProfile = () => {
     }, [])
 
 
-    const route = useRoute();
+    const route = useRoute()
     const id = route.params.id
     const nameUser = route.params.name
     const familyUser = route.params.family
@@ -34,9 +36,6 @@ const EditProfile = () => {
     const PhoneNumberUser = route.params.PhoneNumber
     const PostalCodeUser = route.params.PostalCode
     const AddressUser = route.params.Address
-
-
-    //console.log(emailUser)
 
     return (
         <View>
@@ -46,7 +45,6 @@ const EditProfile = () => {
                     onChangeText={text => setName(text)}
                     autoCapitalize="none"
                     style={styles.TextInput} />
-
 
                 <TextInput placeholder="فامیل"
                     value={family}
@@ -78,11 +76,10 @@ const EditProfile = () => {
                     autoCapitalize="none"
                     style={styles.TextInput} />
 
-
                 <TouchableOpacity style={styles.Button}
                     onPress={async () => {
                         await updateUser({ email, name, family, id, PhoneNumber, Address, PostalCode })
-                            , navigation.navigate('Profile')
+                            , navigation.replace('Profile')
                     }} >
                     <Text style={styles.TextButton}> ویرایش</Text>
                 </TouchableOpacity>
@@ -90,7 +87,7 @@ const EditProfile = () => {
             </ScrollView>
 
         </View>
-    );
+    )
 
 }
 

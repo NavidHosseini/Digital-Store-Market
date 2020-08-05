@@ -1,24 +1,32 @@
-import React from 'react';
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import React from 'react'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import {useNavigation} from '@react-navigation/native';
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import { useNavigation } from '@react-navigation/native'
 
-const CategoriComponent = ({name, iconname, data}) => {
-  const navigation = useNavigation();
-  //console.log(data);
+const CategoriComponent = ({ name, iconname, data }) => {
+
+  const navigation = useNavigation()
+
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate('CategoriResult', {data: data})}>
+      onPress={() => {
+        if (data) {
+          navigation.navigate('CategoriResult', { data: data })
+        } else {
+          alert('بزودی')
+        }
+      }
+      }>
       <View style={styles.View}>
         <Text style={styles.Text}>{name}</Text>
         <FontAwesome name={iconname} style={styles.Icon} />
       </View>
     </TouchableOpacity>
-  );
-};
+  )
+}
 
-export default CategoriComponent;
+export default CategoriComponent
 
 const styles = StyleSheet.create({
   View: {
@@ -37,4 +45,4 @@ const styles = StyleSheet.create({
     marginLeft: 35,
     fontSize: 32,
   },
-});
+})

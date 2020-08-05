@@ -1,15 +1,25 @@
-import React, { useContext, useState } from "react";
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
-import Context from "../../../Context";
-import { useNavigation } from "@react-navigation/native";
+import React, { useContext, useState, useEffect } from "react"
+
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native"
+import Context from "../../../Context"
+import { useNavigation } from "@react-navigation/native"
 
 const CategoriResultComponent = ({ item }) => {
-  const navigation = useNavigation();
 
-  // const [Stock, setStock] = useState('')
+  const navigation = useNavigation()
+
+  const [StockNull, setStockNull] = useState('')
+  const [StockTrue, setStockTrue] = useState('')
 
   const { baseUrl } = useContext(Context)
-  //console.log(item.stock)
+
+  useEffect(() => {
+    if (item.stock === null) {
+      setStockNull('عدم موجودی')
+    } else {
+      setStockTrue('موجود در انبار')
+    }
+  }, [])
 
   return (
     <TouchableOpacity onPress={() => navigation.navigate('CategoriProduct', {
@@ -23,21 +33,25 @@ const CategoriResultComponent = ({ item }) => {
       <View style={styles.View1} >
         <View style={styles.View2}>
 
-
           <View style={styles.View3}>
             <Text style={styles.Text}>{item.name}</Text>
             <Text style={styles.Text}> نام محصول :  </Text>
           </View>
-
+          <View>
+            {StockNull ?
+              (<Text style={styles.StockNull}>{StockNull}</Text>)
+              :
+              (<Text style={styles.StockTrue}>{StockTrue}</Text>)}
+          </View>
           <Image
             source={{ uri: `${baseUrl}${item.picCover.url}` }}
             style={styles.pic} />
         </View>
       </View>
     </TouchableOpacity>
-  );
-};
-export default CategoriResultComponent;
+  )
+}
+export default CategoriResultComponent
 
 const styles = StyleSheet.create({
   pic: {
@@ -58,14 +72,24 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     marginHorizontal: 10,
     backgroundColor: '#ffe4db',
-    //opacity: 0.7
   },
   View3: {
     flexDirection: 'row',
-    marginBottom: 10
   },
   Text: {
     fontFamily: 'Sans',
     fontSize: 15
+  },
+  StockNull: {
+    color: 'red',
+    fontFamily: 'Sans',
+    marginBottom: 5,
+    textDecorationLine: 'line-through',
+    textAlign: 'center'
+  },
+  StockTrue: {
+    color: 'green',
+    fontFamily: 'Sans',
+    marginBottom: 5
   }
-});
+})

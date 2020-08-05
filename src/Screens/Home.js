@@ -1,27 +1,29 @@
-import React, { useState, useEffect, useContext } from "react";
-import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
-import Recommend from "../Components/Recommend/Recommend";
-import Context from "../../Context";
+import React, { useState, useEffect, useContext } from "react"
+import { StyleSheet, Text, View, ActivityIndicator } from "react-native"
+import { ScrollView } from "react-native-gesture-handler"
+import Recommend from "../Components/Recommend/Recommend"
+import Context from "../../Context"
 
 const Home = () => {
-  const [isLoading, setLoading] = useState(true);
-  const [data, setData] = useState([]);
-  const { baseUrl } = useContext(Context);
+  const [isLoading, setLoading] = useState(true)
+  const [data, setData] = useState([])
+  const { baseUrl } = useContext(Context)
 
   useEffect(() => {
+
     fetch(`${baseUrl}/digital-store-markets`)
       .then(response => response.json())
       .then(json => setData(json))
       .catch(error => console.log(error))
-      .finally(() => setLoading(false));
-  }, []);
+      .finally(() => setLoading(false))
+
+  }, [])
 
   const filterResults = Type => {
     return data.filter(result => {
-      return result.Type === Type;
-    });
-  };
+      return result.Type === Type
+    })
+  }
   // console.log(filterResults("LapTop"))
   return (
     <View style={{ flex: 1 }}>
@@ -30,7 +32,7 @@ const Home = () => {
           <ActivityIndicator size="large" color="red" />
         </View>
       ) : (
-          <View style={{ backgroundColor: '#fbf3ee' }}>
+          <View style={styles.Container}>
             <View style={styles.welcomeStyle}>
               <Text style={styles.welcomeTitle}>
                 به فروشگاه دیجیتال خوش امدید
@@ -55,9 +57,9 @@ const Home = () => {
           </View>
         )}
     </View>
-  );
-};
-export default Home;
+  )
+}
+export default Home
 
 const styles = StyleSheet.create({
   welcomeTitle: {
@@ -80,7 +82,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flex: 1,
   },
-  // background: {
-  //   backgroundColor: "#f9e2d2",
-  // },
-});
+  Container: {
+    backgroundColor: '#fbf3ee'
+  }
+})

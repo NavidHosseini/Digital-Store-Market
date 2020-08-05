@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState } from "react"
 import {
     StyleSheet,
     Text,
@@ -7,21 +7,24 @@ import {
     ScrollView,
     TouchableOpacity,
     Alert
-} from "react-native";
-import { useRoute } from "@react-navigation/native";
-import Context from "../../Context";
-import AsyncStorage from '@react-native-community/async-storage';
+}
+    from "react-native"
+import { useRoute } from "@react-navigation/native"
+import Context from "../../Context"
+import AsyncStorage from '@react-native-community/async-storage'
 
 
 const CategoriProduct = ({ navigation }) => {
-    const route = useRoute();
-    const { addCart, baseUrl } = useContext(Context);
 
-    const [Token, setToken] = useState();
+    const { addCart, baseUrl } = useContext(Context)
 
-    const title = route.params.name;
+    const [Token, setToken] = useState()
+
+    const route = useRoute()
+
+    const title = route.params.name
     const url = route.params.picUrl
-    const price = route.params.price;
+    const price = route.params.price
     const detail = route.params.detail
 
     const ButtonAlert = () =>
@@ -37,17 +40,17 @@ const CategoriProduct = ({ navigation }) => {
                 { text: "باشه", onPress: () => { navigation.navigate('SignIn') } }
             ],
             { cancelable: false },
-        );
+        )
 
-    AsyncStorage.getItem("token").then(token => setToken(token));
-    //console.log(Token);
+    AsyncStorage.getItem("token").then(token => setToken(token))
+    //console.log(Token)
 
     return (
         <View>
             <ScrollView>
                 <View>
                     <Image
-                        style={{ width: "100%", height: 250 }}
+                        style={styles.Image}
                         source={{
                             uri: `${baseUrl}${url}`,
                         }}
@@ -55,11 +58,7 @@ const CategoriProduct = ({ navigation }) => {
                 </View>
                 <View style={styles.ViewText}>
                     <View style={{ alignItems: 'center' }}>
-                        <Text style={{
-                            textAlign: "right",
-                            fontFamily: "SansBold",
-                            fontSize: 15,
-                        }}>نام محصول :</Text>
+                        <Text style={styles.ProductName}>نام محصول :</Text>
                     </View>
                     <Text style={styles.TextStyle}>{title}</Text>
 
@@ -67,29 +66,25 @@ const CategoriProduct = ({ navigation }) => {
                     <Text style={styles.TextStyle}>توضیحات :</Text>
                     <Text style={styles.TextStyle}>{detail}</Text>
                     <TouchableOpacity
+
                         onPress={() => {
                             if (Token) {
-                                addCart({ title, url, price });
-                                alert("به سبد خرید اضافه شد");
+                                addCart({ title, url, price })
+                                alert("به سبد خرید اضافه شد")
                             } else {
                                 { ButtonAlert() }
                             }
-                        }}
-                    >
-                        <View
-                            style={styles.Button}
-                        >
-                            <Text style={styles.ButtonText}>
-                                اضافه به سبد خرید
-              </Text>
+                        }}>
+                        <View style={styles.Button} >
+                            <Text style={styles.ButtonText}> اضافه به سبد خرید</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
             </ScrollView>
         </View>
-    );
-};
-export default CategoriProduct;
+    )
+}
+export default CategoriProduct
 
 const styles = StyleSheet.create({
     TextStyle: {
@@ -112,5 +107,14 @@ const styles = StyleSheet.create({
         fontFamily: "Sans",
         color: "#fff",
         fontSize: 17
+    },
+    Image: {
+        width: "100%",
+        height: 250
+    },
+    ProductName: {
+        textAlign: "right",
+        fontFamily: "SansBold",
+        fontSize: 15,
     }
-});
+})

@@ -1,10 +1,10 @@
-import React from "react";
-import { StyleSheet, Text, View, FlatList } from "react-native";
-import RecommendItem from "../Recommend/RecommendItem";
+import React from "react"
+import { StyleSheet, Text, View, FlatList } from "react-native"
+import RecommendItem from "../Recommend/RecommendItem"
 
 const Recommend = ({ title, result }) => {
   return (
-    <View style={{ borderColor: 'black', borderBottomWidth: 1 }}>
+    <View style={styles.View}>
       <Text style={styles.text}>{title}</Text>
 
       <FlatList
@@ -14,10 +14,10 @@ const Recommend = ({ title, result }) => {
         renderItem={({ item }) => <RecommendItem item={item} />}
       />
     </View>
-  );
-};
+  )
+}
 
-export default Recommend;
+export default Recommend
 
 const styles = StyleSheet.create({
   text: {
@@ -37,4 +37,8 @@ const styles = StyleSheet.create({
     borderColor: "red",
     borderWidth: 1,
   },
-});
+  View: {
+    borderColor: 'black',
+    borderBottomWidth: 1
+  }
+})

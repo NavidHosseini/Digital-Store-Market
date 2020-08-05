@@ -1,12 +1,13 @@
-import React from 'react';
-import { View, TouchableOpacity } from 'react-native';
+import React from 'react'
+import { View, TouchableOpacity } from 'react-native'
 
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native'
 
 const HomeButton = ({ tintColor }) => {
-  const navigation = useNavigation();
+
+  const navigation = useNavigation()
 
   return (
     <View>
@@ -14,6 +15,6 @@ const HomeButton = ({ tintColor }) => {
         <MaterialCommunityIcons name="home-outline" style={{ fontSize: 30 }} color={tintColor} />
       </TouchableOpacity>
     </View>
-  );
-};
-export default HomeButton;
+  )
+}
+export default HomeButton

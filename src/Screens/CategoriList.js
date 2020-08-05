@@ -1,27 +1,31 @@
-import React, { useState, useEffect, useContext } from "react";
-import { StyleSheet, View, ScrollView, ActivityIndicator } from "react-native";
+import React, { useState, useEffect, useContext } from "react"
+import { StyleSheet, View, ScrollView, ActivityIndicator } from "react-native"
 
-import CategoriComponent from "../Components/Categori/CategoriComponent";
-import Context from "../../Context";
+import CategoriComponent from "../Components/Categori/CategoriComponent"
+import Context from "../../Context"
 
 const CategoriList = () => {
-  const [isLoading, setLoading] = useState(true);
-  const [data, setData] = useState([]);
-  const { baseUrl } = useContext(Context);
+
+  const [isLoading, setLoading] = useState(true)
+  const [data, setData] = useState([])
+
+  const { baseUrl } = useContext(Context)
 
   useEffect(() => {
+
     fetch(`${baseUrl}/categories`)
       .then(response => response.json())
       .then(json => setData(json))
       .catch(error => console.error(error))
-      .finally(() => setLoading(false));
-  }, []);
+      .finally(() => setLoading(false))
+
+  }, [])
 
   const filterResults = name => {
     return data.filter(result => {
-      return result.name === name;
-    });
-  };
+      return result.name === name
+    })
+  }
 
   return (
     <View >
@@ -38,6 +42,7 @@ const CategoriList = () => {
                 name="کالاهای دیجیتال"
                 iconname="tv"
                 data={filterResults("Digital")}
+                rroute='CategoriProduct'
               />
               <CategoriComponent
                 name="آرایشی و بهداشتی"
@@ -59,9 +64,9 @@ const CategoriList = () => {
           </View>
         )}
     </View>
-  );
-};
-export default CategoriList;
+  )
+}
+export default CategoriList
 
 const styles = StyleSheet.create({
   ActivityIndicator: {
@@ -69,4 +74,4 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flex: 1,
   },
-});
+})

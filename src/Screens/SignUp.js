@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react"
 import {
 
   StyleSheet,
@@ -7,24 +7,27 @@ import {
   View,
   Text,
   ScrollView,
-} from "react-native";
-import Context from "../../Context";
-import AsyncStorage from '@react-native-community/async-storage';
-import { useNavigation } from "@react-navigation/native";
+} from "react-native"
+import Context from "../../Context"
+import AsyncStorage from '@react-native-community/async-storage'
+import { useNavigation } from "@react-navigation/native"
+
 const Signin = () => {
-  const navigation = useNavigation();
-  const { signup, signin } = useContext(Context);
 
-  const [Token, setToken] = useState();
+  const navigation = useNavigation()
 
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [name, setName] = useState("");
-  const [family, setFamily] = useState("");
-  const [password, setPassword] = useState("");
+  const { signup, signin } = useContext(Context)
+
+  const [Token, setToken] = useState()
+  const [email, setEmail] = useState("")
+  const [username, setUsername] = useState("")
+  const [name, setName] = useState("")
+  const [family, setFamily] = useState("")
+  const [password, setPassword] = useState("")
+
   useEffect(() => {
-    AsyncStorage.getItem("token").then(token => setToken(token));
-  });
+    AsyncStorage.getItem("token").then(token => setToken(token))
+  })
 
   return (
     <ScrollView>
@@ -86,7 +89,7 @@ const Signin = () => {
           onPress={async () => {
             {
               if (Token === null) {
-                await signup({ email, password, username, password, name, family });
+                await signup({ email, password, username, password, name, family })
                 await signin({ email, password })
 
                 navigation.navigate("Profile")
@@ -107,10 +110,10 @@ const Signin = () => {
         </TouchableOpacity>
       </View>
     </ScrollView>
-  );
-};
+  )
+}
 
-export default Signin;
+export default Signin
 
 const styles = StyleSheet.create({
   TextInput: {
@@ -146,4 +149,4 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontFamily: "SansBold",
   },
-});
+})

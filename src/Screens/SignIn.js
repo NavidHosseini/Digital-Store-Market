@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react"
 import {
   StyleSheet,
   TextInput,
@@ -6,32 +6,30 @@ import {
   View,
   Text,
   ScrollView,
-
-} from "react-native";
-import Context from "../../Context";
-import AsyncStorage from '@react-native-community/async-storage';
-import Profile from "./Profile";
-import { useNavigation } from "@react-navigation/native";
+} from "react-native"
+import Context from "../../Context"
+import AsyncStorage from '@react-native-community/async-storage'
+import Profile from "./Profile"
+import { useNavigation } from "@react-navigation/native"
 
 const Signin = () => {
-  const navigation = useNavigation();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [Token, setToken] = useState();
+  const navigation = useNavigation()
 
-  const { signin } = useContext(Context);
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [Token, setToken] = useState()
+
+  const { signin } = useContext(Context)
 
   const tokenAssignment = async () => {
     const token = await AsyncStorage.getItem("token")
-
     setToken(token)
   }
 
   useEffect(() => {
     tokenAssignment()
-  });
-  //console.log(Token);
+  })
 
   return (
     <>
@@ -74,12 +72,12 @@ const Signin = () => {
             <TouchableOpacity
               style={styles.button}
               onPress={async () => {
-                await signin({ email, password });
+                await signin({ email, password })
 
                 await tokenAssignment()
 
                 if (Token) {
-                  navigation.navigate("Profile");
+                  navigation.navigate("Profile")
                 }
               }}
             >
@@ -98,9 +96,9 @@ const Signin = () => {
         )}
     </>
   )
-};
+}
 
-export default Signin;
+export default Signin
 
 const styles = StyleSheet.create({
   View: {
@@ -148,4 +146,4 @@ const styles = StyleSheet.create({
   forgotpasswordText: {
     color: "#004e9b",
   },
-});
+})
