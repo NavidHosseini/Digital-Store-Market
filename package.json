@@ -19,6 +19,7 @@
     "native-base": "^2.13.13",
     "react": "16.11.0",
     "react-native": "0.62.2",
+    "react-native-document-picker": "^3.5.4",
     "react-native-dotenv": "^2.2.6",
     "react-native-gesture-handler": "^1.6.1",
     "react-native-image-picker": "^2.3.3",
@@ -26,7 +27,8 @@
     "react-native-safe-area-context": "^3.0.5",
     "react-native-screens": "^2.9.0",
     "react-native-splash-screen": "^3.2.0",
-    "react-native-vector-icons": "^6.6.0"
+    "react-native-vector-icons": "^6.6.0",
+    "strapi-sdk-javascript": "^0.3.3"
   },
   "devDependencies": {
     "@babel/core": "^7.10.3",

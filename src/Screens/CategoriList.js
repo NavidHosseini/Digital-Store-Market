@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react"
 import { StyleSheet, View, ScrollView, ActivityIndicator } from "react-native"
 
 import CategoriComponent from "../Components/Categori/CategoriComponent"
+
 import config from '../../config'
+
 const CategoriList = () => {
 
   const [isLoading, setLoading] = useState(true)
@@ -10,7 +12,6 @@ const CategoriList = () => {
 
 
   useEffect(() => {
-
     fetch(`${config.BASE_URL}/categories`)
       .then(response => response.json())
       .then(json => setData(json))
@@ -26,7 +27,7 @@ const CategoriList = () => {
   }
 
   return (
-    <View >
+    <View style={{ flex: 1 }} >
       {isLoading ? (
         <View style={styles.ActivityIndicator}>
           <ActivityIndicator
@@ -40,7 +41,6 @@ const CategoriList = () => {
                 name="کالاهای دیجیتال"
                 iconname="tv"
                 data={filterResults("Digital")}
-                rroute='CategoriProduct'
               />
               <CategoriComponent
                 name="آرایشی و بهداشتی"

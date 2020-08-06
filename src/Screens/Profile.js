@@ -23,7 +23,7 @@ const Profile = () => {
   useEffect(() => {
     const dataFetch = async () => {
       const token = await AsyncStorage.getItem("token")
-      // console.log(token)
+      //console.log(token)
       fetch(`${config.BASE_URL}/users/me`, {
         method: 'GET',
         headers: {
@@ -43,7 +43,7 @@ const Profile = () => {
   //Image not read my Api
 
   return (
-    <View>
+    <View style={{ backgroundColor: '#e1e1e1' }}>
       <ScrollView>
         <View style={styles.profileTextView}>
           <Text style={styles.profileText}>پروفایل کاربر</Text>
@@ -82,6 +82,7 @@ const Profile = () => {
           </View>
           <View style={styles.ViewText2} >
             <TouchableOpacity style={styles.ViewIcon}
+
               onPress={() => navigation.navigate('EditProfile', {
                 id: data.id,
                 name: data.name,
@@ -125,6 +126,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 15,
     padding: 15,
     marginVertical: 10,
+    borderRadius: 10
   },
   profileText: {
     fontFamily: "Sans",
@@ -132,8 +134,8 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   image: {
-    width: 90,
-    height: 90,
+    width: 110,
+    height: 110,
     borderRadius: 50,
     justifyContent: 'center'
   },
@@ -151,7 +153,7 @@ const styles = StyleSheet.create({
   },
   ViewText: {
     alignSelf: "center",
-    marginRight: 15,
+    marginRight: -22,
     flexDirection: "row",
   },
   ViewText2: {

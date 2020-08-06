@@ -6,13 +6,15 @@ import {
     StyleSheet,
     TouchableOpacity,
     ScrollView,
-    Button,
+    Image,
     PermissionsAndroid
 } from 'react-native'
 import Context from '../../Context'
 import { useRoute, useNavigation } from "@react-navigation/native"
 import ImagePicker from "react-native-image-picker"
-
+import config from '../../config'
+import DocumentPicker from 'react-native-document-picker'
+import Strapi from 'strapi-sdk-javascript'
 
 const EditProfile = () => {
 
@@ -26,7 +28,7 @@ const EditProfile = () => {
     const [PhoneNumber, setPhoneNumber] = useState('')
     const [Address, setAddress] = useState('')
     const [PostalCode, setPostalCode] = useState('')
-
+    const [imgeUri, setImageUri] = useState(null)
 
     useEffect(() => {
         setEmail(`${emailUser}`),
@@ -52,32 +54,91 @@ const EditProfile = () => {
         try {
             const granted = await PermissionsAndroid.request(
                 PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
-
             );
+
             if (granted === PermissionsAndroid.RESULTS.GRANTED) {
                 console.log("You can use the storage");
+
+                const option = {
+                    // noData: true,
+                    title: 'Select Avatar',
+                    customButtons: [{ name: 'Online Store', title: 'Choose a photo' }],
+                    storageOptions: {
+                        skipBackup: true,
+                        path: 'images',
+                    },
+                }
+
+                ImagePicker.showImagePicker(option, response => {
+                    if (response) {
+
+                        setImageUri(response.uri)
+
+                        let data = new FormData()
+                        data.append('files', { uri: response.uri, type: response.type, name: response.fileName })
+                        data.append('refId', 24)
+                        data.append('ref', 'user')
+                        data.append('field', 'avatar')
+                        data.append('source', 'users-permissions')
+                        console.log('data: ', data._parts)
+
+                        fetch(`${config.BASE_URL}/upload/`, {
+                            method: "POST",
+                            headers: {
+                                'Content-Type': 'multipart/form-data',
+                            },
+                            body: data,
+                        })
+                            .then(response => {
+                                console.log(response.json())
+                                console.log(response.status)
+                            })
+                            .catch(err => console.log(err))
+
+                    }
+                })
+                // try {
+                //     const res = await DocumentPicker.pick({
+                //         type: [DocumentPicker.types.images],
+                //     });
+
+                //     setImageUri(res.uri)
+
+                //     let data = new FormData()
+
+                //     data.append("files", {uri: res.uri, type: })
+                //     // data.append('refId', 24)
+                //     // data.append('ref', 'user')
+                //     // data.append('fieldId', 'avatar')
+
+                //     fetch(`${config.BASE_URL}/upload/`, {
+                //         method: "POST",
+                //         body: data,
+                //         headers: {
+                //             'Content-Type': 'multipart/form-data',
+                //         },
+                //     })
+                //         .then(response => {
+                //             console.log(response.json())
+                //             console.log(response.status)
+                //         })
+                //         .catch(err => console.log(err))
+                // } catch (err) {
+                //     if (DocumentPicker.isCancel(err)) {
+                //         // User cancelled the picker, exit any dialogs or menus and move on
+                //     } else {
+                //         throw err;
+                //     }
+                // }
+
             } else {
                 console.log("storage permission denied");
             }
         } catch (err) {
             console.warn(err);
         }
-        const option = {
-            noData: true,
-        }
-        ImagePicker.launchImageLibrary(option, response => {
-            console.log('response', response)
-        })
+
     };
-
-
-    const handleChoosePhoto = () => {
-        const option = {}
-        ImagePicker.launchImageLibrary(option, response => {
-            console.log('response', response)
-        })
-    }
-
 
     return (
         <View>
@@ -118,17 +179,25 @@ const EditProfile = () => {
                     autoCapitalize="none"
                     style={styles.TextInput} />
 
+                <Image source={{ uri: imgeUri }} style={{ width: 100, height: 100 }} />
+
+                <TouchableOpacity style={styles.Button2}
+
+                    onPress={async () => await requestCameraPermission()}
+                >
+                    <Text style={styles.TextButton}> انتخاب عکس</Text>
+                </TouchableOpacity>
+
                 <TouchableOpacity style={styles.Button}
                     onPress={async () => {
                         await updateUser({ email, name, family, id, PhoneNumber, Address, PostalCode })
-                            , navigation.replace('Profile')
+                            , navigation.reset({
+                                index: 0,
+                                routes: [{ name: 'Profile' }],
+                            });
                     }} >
                     <Text style={styles.TextButton}> ویرایش</Text>
                 </TouchableOpacity>
-                <Button title="انتخاب عکس"
-                    onPress={async () => await requestCameraPermission()}
-                />
-
             </ScrollView>
 
         </View>
@@ -151,10 +220,22 @@ const styles = StyleSheet.create({
         backgroundColor: 'red',
         alignItems: 'center',
         marginHorizontal: 15,
-        marginBottom: 50
+        marginBottom: 20
     },
     TextButton: {
         color: '#fff',
         fontFamily: 'Sans',
+    },
+    Button2: {
+        padding: 15,
+        borderRadius: 10,
+        backgroundColor: 'blue',
+        alignItems: 'center',
+        marginHorizontal: 15,
+        marginBottom: 20
+
     }
 })
+
+
+

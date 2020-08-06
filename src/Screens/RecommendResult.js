@@ -115,11 +115,12 @@ const styles = StyleSheet.create({
     padding: 18,
     marginTop: 20,
     marginBottom: 40,
+    borderRadius: 10
   },
   ButtonText: {
     fontFamily: "Sans",
     color: "#fff",
-    fontSize: 17
+    fontSize: 17,
   },
   Image: {
     width: "100%",
