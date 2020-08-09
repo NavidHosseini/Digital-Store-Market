@@ -6,12 +6,15 @@ import {
   Image,
   TouchableOpacity,
   Alert,
-  ScrollView
+  ScrollView,
+  StatusBar
 } from "react-native"
 import AsyncStorage from '@react-native-community/async-storage'
 import Context from "../../Context"
 import { useRoute } from "@react-navigation/native"
-import config from '../../config'
+import Carousel from 'react-native-snap-carousel'
+import RecommendImages from "../Components/Recommend/RecommendImages"
+
 const RecommendResult = ({ navigation }) => {
   const route = useRoute()
   const { addCart } = useContext(Context)
@@ -25,6 +28,12 @@ const RecommendResult = ({ navigation }) => {
   const title = route.params.data.name
   const url = route.params.data.picCover.url
   const price = route.params.data.price
+  const picturs = route.params.picturs
+  // const url = route.params.picturs.url
+
+  //console.log(url)
+
+
 
   const createTwoButtonAlert = () =>
     Alert.alert(
@@ -52,50 +61,62 @@ const RecommendResult = ({ navigation }) => {
   }, [])
 
   return (
-    <View>
-      <ScrollView>
-        <View>
-          <Image
-            style={styles.Image}
-            source={{ uri: `${config.BASE_URL}${url}` }}
-          />
-        </View>
-        <View style={styles.ViewText}>
-          <Text style={styles.ProductName}>{title}: نام محصول</Text>
-          <Text style={styles.TextStyle}>توضیحات :</Text>
-          <Text style={styles.TextStyle}>{data.detail}</Text>
-          <Text style={styles.TextStyle}>قیمت :{price} تومان </Text>
-
-          <View>
-            {StockNull ?
-              (<Text style={styles.StockNull}>{StockNull}</Text>)
-              :
-              (<Text style={styles.StockTrue}>{StockTrue}</Text>)}
+    <>
+      {/* <StatusBar hidden={true} /> */}
+      <View>
+        <ScrollView>
+          <View style={{ alignItems: 'center' }}>
+            <Carousel
+              layout='tinder'
+              layoutCardOffset={50}
+              sliderWidth={300}
+              itemWidth={300}
+              data={picturs}
+              keyExtractor={() => Math.floor(Math.random() * 9999).toString()}
+              renderItem={({ item }) => {
+                return (
+                  <RecommendImages data={item} />
+                )
+              }}
+            />
           </View>
-          <TouchableOpacity
-            onPress={() => {
-              if (Token) {
-                if (StockTrue) {
-                  addCart({ title, url, price })
-                  alert("به سبد خرید اضافه شد")
-                } else {
-                  alert('موجودی تمام شده')
-                }
+          <View style={styles.ViewText}>
+            <Text style={styles.ProductName}>{title}: نام محصول</Text>
+            <Text style={styles.TextStyle}>توضیحات :</Text>
+            <Text style={styles.TextStyle}>{data.detail}</Text>
+            <Text style={styles.TextStyle}>قیمت :{price} تومان </Text>
 
-              } else {
-                { createTwoButtonAlert() }
-              }
-            }}
-          >
-            <View style={styles.Button}>
-              <Text style={styles.ButtonText}>
-                اضافه به سبد خرید
-              </Text>
+            <View>
+              {StockNull ?
+                (<Text style={styles.StockNull}>{StockNull}</Text>)
+                :
+                (<Text style={styles.StockTrue}>{StockTrue}</Text>)}
             </View>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
-    </View>
+            <TouchableOpacity
+              onPress={() => {
+                if (Token) {
+                  if (StockTrue) {
+                    addCart({ title, url, price })
+                    alert("به سبد خرید اضافه شد")
+                  } else {
+                    alert('موجودی تمام شده')
+                  }
+
+                } else {
+                  { createTwoButtonAlert() }
+                }
+              }}
+            >
+              <View style={styles.Button}>
+                <Text style={styles.ButtonText}>
+                  اضافه به سبد خرید
+              </Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
+      </View>
+    </>
   )
 }
 export default RecommendResult

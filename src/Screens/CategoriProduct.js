@@ -12,8 +12,8 @@ import {
 import { useRoute } from "@react-navigation/native"
 import AsyncStorage from '@react-native-community/async-storage'
 import Context from '../../Context'
-
-import config from '../../config'
+import Carousel from 'react-native-snap-carousel'
+import CategoriImages from "../Components/Categori/CategoriImages"
 
 const CategoriProduct = ({ navigation }) => {
 
@@ -30,6 +30,8 @@ const CategoriProduct = ({ navigation }) => {
     const price = route.params.price
     const detail = route.params.detail
     const item = route.params.item
+    const picturs = route.params.picturs
+    console.log(picturs)
 
     useEffect(() => {
         if (item.stock === null) {
@@ -61,11 +63,21 @@ const CategoriProduct = ({ navigation }) => {
     return (
         <View>
             <ScrollView>
-                <View>
-                    <Image
-                        style={styles.Image}
-                        source={{ uri: `${config.BASE_URL}${url}` }}
+                <View style={{ alignItems: 'center' }}>
+                    <Carousel
+                        layout='tinder'
+                        layoutCardOffset={50}
+                        sliderWidth={300}
+                        itemWidth={300}
+                        data={picturs}
+                        keyExtractor={() => Math.floor(Math.random() * 9999).toString()}
+                        renderItem={({ item }) => {
+                            return (
+                                <CategoriImages data={item} />
+                            )
+                        }}
                     />
+
                 </View>
                 <View style={styles.ViewText}>
                     <View>

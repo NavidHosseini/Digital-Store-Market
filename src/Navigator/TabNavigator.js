@@ -22,7 +22,9 @@ const TabNavigator = () => {
         activeTintColor: "#ff4b0f",
         inactiveTintColor: 'black',
         showLabel: false,
+        keyboardHidesTabBar: true,
         style: { backgroundColor: "#ffe6d6" }
+
       }}
     >
       <Tab.Screen

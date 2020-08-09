@@ -16,19 +16,16 @@
     "@react-navigation/drawer": "^5.8.2",
     "@react-navigation/native": "^5.5.1",
     "@react-navigation/stack": "^5.5.1",
-    "native-base": "^2.13.13",
     "react": "16.11.0",
     "react-native": "0.62.2",
-    "react-native-document-picker": "^3.5.4",
     "react-native-dotenv": "^2.2.6",
     "react-native-gesture-handler": "^1.6.1",
     "react-native-image-picker": "^2.3.3",
     "react-native-reanimated": "^1.9.0",
     "react-native-safe-area-context": "^3.0.5",
     "react-native-screens": "^2.9.0",
-    "react-native-splash-screen": "^3.2.0",
-    "react-native-vector-icons": "^6.6.0",
-    "strapi-sdk-javascript": "^0.3.3"
+    "react-native-snap-carousel": "^4.0.0-beta.5",
+    "react-native-vector-icons": "^6.6.0"
   },
   "devDependencies": {
     "@babel/core": "^7.10.3",

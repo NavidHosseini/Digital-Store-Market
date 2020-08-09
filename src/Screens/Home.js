@@ -1,27 +1,52 @@
 import React, { useState, useEffect } from "react"
-import { StyleSheet, Text, View, ActivityIndicator } from "react-native"
+import { StyleSheet, Text, View, ActivityIndicator, BackHandler, Alert } from "react-native"
 import { ScrollView } from "react-native-gesture-handler"
 import Recommend from "../Components/Recommend/Recommend"
 import config from '../../config'
-const Home = () => {
+
+const Home = ({ navigation }) => {
+
   const [isLoading, setLoading] = useState(true)
   const [data, setData] = useState([])
 
   useEffect(() => {
-
     fetch(`${config.BASE_URL}/digital-store-markets`)
       .then(response => response.json())
       .then(json => setData(json))
-      .catch(error => console.log(error))
+      .catch(() => ButtonAlert())
       .finally(() => setLoading(false))
 
   }, [])
+  const ButtonAlert = () =>
+    Alert.alert(
+      "هشدار",
+      "خطا در ارتباط با سرور",
+      [
+        {
+          text: "خروج",
+          onPress: () => BackHandler.exitApp(),
+          style: "cancel"
+        },
+        {
+          text: "دوباره امتحان کن", onPress: () => {
+            navigation.reset({
+              index: 1,
+              routes: [{ name: 'Home' }],
+            })
+          }
+        }
+      ],
+      { cancelable: false },
+    )
 
   const filterResults = Type => {
     return data.filter(result => {
       return result.Type === Type
     })
   }
+
+
+
   // console.log(filterResults("LapTop"))
   return (
     <View style={{ flex: 1 }}>

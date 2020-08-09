@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
-import { StyleSheet, View, Image, TouchableOpacity } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import React from "react"
+import { StyleSheet, View, Image, TouchableOpacity } from "react-native"
+import { useNavigation } from "@react-navigation/native"
 import config from '../../../config'
 
 const RecommendItem = ({ item }) => {
-  const navigation = useNavigation();
 
+  const navigation = useNavigation()
   return (
     <View>
       <View style={styles.Text}>
@@ -18,6 +18,7 @@ const RecommendItem = ({ item }) => {
               detail: item.detail,
               data: item,
               picCover: item.picCover.url,
+              picturs: item.picturs
             })}
         >
           <Image

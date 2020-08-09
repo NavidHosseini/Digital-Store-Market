@@ -4,7 +4,7 @@ import {
   View,
   FlatList,
   TouchableOpacity,
-  Text,
+  Text
 } from "react-native"
 import Context from "../../Context"
 import CartItemComponent from "../Components/cart/CartItemComponent"
@@ -12,6 +12,10 @@ import CartItemComponent from "../Components/cart/CartItemComponent"
 
 const Cart = () => {
   const { cartProduct } = useContext(Context)
+
+
+
+
   return (
     <View style={styles.View}>
       <FlatList
@@ -29,6 +33,7 @@ const Cart = () => {
         onPress={() => alert("پرداخت با موفقیت انجام شد")}>
         <Text style={styles.paymentText}>پرداخت</Text>
       </TouchableOpacity>
+
     </View>
   )
 }
@@ -43,7 +48,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#ff5050",
     padding: 17,
-    //marginBottom: 60,
+    marginBottom: 7,
   },
   paymentText: {
     fontFamily: "Sans",

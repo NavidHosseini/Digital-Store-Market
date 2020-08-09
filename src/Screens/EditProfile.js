@@ -13,8 +13,7 @@ import Context from '../../Context'
 import { useRoute, useNavigation } from "@react-navigation/native"
 import ImagePicker from "react-native-image-picker"
 import config from '../../config'
-import DocumentPicker from 'react-native-document-picker'
-import Strapi from 'strapi-sdk-javascript'
+
 
 const EditProfile = () => {
 
@@ -54,10 +53,10 @@ const EditProfile = () => {
         try {
             const granted = await PermissionsAndroid.request(
                 PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
-            );
+            )
 
             if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-                console.log("You can use the storage");
+                console.log("You can use the storage")
 
                 const option = {
                     noData: true,
@@ -70,6 +69,7 @@ const EditProfile = () => {
                 }
 
                 ImagePicker.showImagePicker(option, response => {
+
                     if (response) {
 
                         setImageUri(response.uri)
@@ -78,7 +78,7 @@ const EditProfile = () => {
                         data.append('files', { uri: response.uri, type: response.type, name: response.fileName })
                         data.append('refId', 24)
                         data.append('ref', 'user')
-                        data.append('field', 'Pic')
+                        data.append('field', 'media')
                         data.append('source', 'users-permissions')
                         console.log('data: ', data._parts)
 
@@ -100,7 +100,7 @@ const EditProfile = () => {
                 // try {
                 //     const res = await DocumentPicker.pick({
                 //         type: [DocumentPicker.types.images],
-                //     });
+                //     })
 
                 //     setImageUri(res.uri)
 
@@ -127,18 +127,18 @@ const EditProfile = () => {
                 //     if (DocumentPicker.isCancel(err)) {
                 //         // User cancelled the picker, exit any dialogs or menus and move on
                 //     } else {
-                //         throw err;
+                //         throw err
                 //     }
                 // }
 
             } else {
-                console.log("storage permission denied");
+                console.log("storage permission denied")
             }
         } catch (err) {
-            console.warn(err);
+            console.warn(err)
         }
 
-    };
+    }
 
     return (
         <View>
@@ -159,18 +159,24 @@ const EditProfile = () => {
                     value={email}
                     onChangeText={text => setEmail(text)}
                     autoCapitalize="none"
+                    keyboardType="email-address"
                     style={styles.TextInput} />
 
                 <TextInput placeholder="شماره موبایل"
                     value={PhoneNumber}
                     onChangeText={text => setPhoneNumber(text)}
                     autoCapitalize="none"
-                    style={styles.TextInput} />
+                    style={styles.TextInput}
+                    maxLength={11}
+                    keyboardType="number-pad"
+                />
 
                 <TextInput placeholder="کد پستی"
                     value={PostalCode}
                     onChangeText={text => setPostalCode(text)}
                     autoCapitalize="none"
+                    maxLength={10}
+                    keyboardType="number-pad"
                     style={styles.TextInput} />
 
                 <TextInput placeholder="ادرس"
@@ -194,7 +200,7 @@ const EditProfile = () => {
                             , navigation.reset({
                                 index: 0,
                                 routes: [{ name: 'Profile' }],
-                            });
+                            })
                     }} >
                     <Text style={styles.TextButton}> ویرایش</Text>
                 </TouchableOpacity>
