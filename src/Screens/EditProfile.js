@@ -60,12 +60,12 @@ const EditProfile = () => {
                 console.log("You can use the storage");
 
                 const option = {
-                    // noData: true,
+                    noData: true,
                     title: 'Select Avatar',
-                    customButtons: [{ name: 'Online Store', title: 'Choose a photo' }],
+                    //customButtons: [{ name: 'Online Store', title: 'Choose a photo' }],
                     storageOptions: {
                         skipBackup: true,
-                        path: 'images',
+                        path: 'Market-App/Images',
                     },
                 }
 
@@ -78,7 +78,7 @@ const EditProfile = () => {
                         data.append('files', { uri: response.uri, type: response.type, name: response.fileName })
                         data.append('refId', 24)
                         data.append('ref', 'user')
-                        data.append('field', 'avatar')
+                        data.append('field', 'Pic')
                         data.append('source', 'users-permissions')
                         console.log('data: ', data._parts)
 

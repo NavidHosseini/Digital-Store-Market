@@ -9,7 +9,6 @@ import {
 } from "react-native"
 import Context from "../../Context"
 import AsyncStorage from '@react-native-community/async-storage'
-import Profile from "./Profile"
 import { useNavigation } from "@react-navigation/native"
 
 const Signin = () => {
@@ -25,6 +24,9 @@ const Signin = () => {
   const tokenAssignment = async () => {
     const token = await AsyncStorage.getItem("token")
     setToken(token)
+    if (Token) {
+      navigation.navigate('Profile')
+    }
   }
 
   useEffect(() => {
@@ -32,69 +34,61 @@ const Signin = () => {
   })
 
   return (
-    <>
-      {Token === null ? (
-        <ScrollView>
-          <View>
-            <View style={styles.View}>
-              <Text style={styles.ProfileText}>پروفایل کاربری</Text>
-            </View>
 
-            <View style={styles.TextInput}>
-              <TextInput
-                placeholder="ایمیل"
-                value={email}
-                onChangeText={text => setEmail(text)}
-                autoCapitalize="none"
-                style={styles.TextInputstyle}
-              />
-            </View>
+    <ScrollView>
+      <View>
+        <View style={styles.View}>
+          <Text style={styles.ProfileText}>پروفایل کاربری</Text>
+        </View>
 
-            <View style={styles.TextInput}>
-              <TextInput
-                placeholder="پسورد"
-                secureTextEntry={true}
-                value={password}
-                onChangeText={text => setPassword(text)}
-                autoCapitalize="none"
-                place
-                style={styles.TextInputstyle}
-              />
-            </View>
-            <TouchableOpacity>
-              <View style={styles.forgotpasswordView}>
-                <Text style={styles.forgotpasswordText}>
-                  کلمه عبور خود را فراموش کرده ام ؟
+        <View style={styles.TextInput}>
+          <TextInput
+            placeholder="ایمیل"
+            value={email}
+            onChangeText={text => setEmail(text)}
+            autoCapitalize="none"
+            style={styles.TextInputstyle}
+          />
+        </View>
+
+        <View style={styles.TextInput}>
+          <TextInput
+            placeholder="پسورد"
+            secureTextEntry={true}
+            value={password}
+            onChangeText={text => setPassword(text)}
+            autoCapitalize="none"
+            place
+            style={styles.TextInputstyle}
+          />
+        </View>
+        <TouchableOpacity>
+          <View style={styles.forgotpasswordView}>
+            <Text style={styles.forgotpasswordText}>
+              کلمه عبور خود را فراموش کرده ام ؟
               </Text>
-              </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={styles.button}
-              onPress={async () => {
-                await signin({ email, password })
-
-                await tokenAssignment()
-
-                if (Token) {
-                  navigation.navigate("Profile")
-                }
-              }}
-            >
-              <Text style={styles.buttonText}>ورود به حساب</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.button2}
-              onPress={() => navigation.navigate("SignUp")}
-            >
-              <Text style={styles.buttonText}>ساخت حساب کاربری</Text>
-            </TouchableOpacity>
           </View>
-        </ScrollView>
-      ) : (
-          <Profile />
-        )}
-    </>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.button}
+          onPress={async () => {
+
+            await signin({ email, password })
+            await tokenAssignment()
+          }}
+        >
+          <Text style={styles.buttonText}>ورود به حساب</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button2}
+          onPress={() => navigation.navigate("SignUp")}
+        >
+          <Text style={styles.buttonText}>ساخت حساب کاربری</Text>
+        </TouchableOpacity>
+      </View>
+    </ScrollView>
+
   )
 }
 
