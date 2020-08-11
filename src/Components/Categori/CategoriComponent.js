@@ -10,6 +10,7 @@ const CategoriComponent = ({ name, iconname, data }) => {
 
   return (
     <TouchableOpacity
+      style={styles.Viewasli}
       onPress={() => {
         if (data) {
           navigation.navigate('CategoriResult', { data: data })
@@ -18,10 +19,8 @@ const CategoriComponent = ({ name, iconname, data }) => {
         }
       }
       }>
-      <View style={styles.View}>
-        <Text style={styles.Text}>{name}</Text>
-        <FontAwesome name={iconname} style={styles.Icon} />
-      </View>
+      <Text style={styles.Text}>{name}</Text>
+      <FontAwesome name={iconname} style={styles.Icon} />
     </TouchableOpacity>
   )
 }
@@ -29,20 +28,29 @@ const CategoriComponent = ({ name, iconname, data }) => {
 export default CategoriComponent
 
 const styles = StyleSheet.create({
-  View: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    margin: 15,
-    alignItems: 'center',
-    borderBottomWidth: 1,
-    borderBottomColor: '#ff8040',
-  },
+
   Text: {
     fontFamily: 'Sans',
     fontSize: 18,
+    marginBottom: 13,
+
   },
   Icon: {
     marginLeft: 35,
     fontSize: 32,
+    alignSelf: 'center',
+    marginBottom: 13,
+    marginRight: 18
+
+
   },
+  Viewasli: {
+    marginTop: 13,
+    alignItems: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: '#ff8040',
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  }
 })

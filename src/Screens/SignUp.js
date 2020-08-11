@@ -68,6 +68,7 @@ const Signin = () => {
             value={email}
             onChangeText={text => setEmail(text)}
             autoCapitalize="none"
+            keyboardType="email-address"
             style={styles.TextInputstyle}
           />
         </View>

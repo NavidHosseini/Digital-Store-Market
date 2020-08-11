@@ -149,7 +149,7 @@ const EditProfile = () => {
                     autoCapitalize="none"
                     style={styles.TextInput} />
 
-                <TextInput placeholder="فامیل"
+                <TextInput placeholder="نام خانوادگی"
                     value={family}
                     onChangeText={text => setFamily(text)}
                     autoCapitalize="none"

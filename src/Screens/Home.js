@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, ActivityIndicator, BackHandler, Alert } from "r
 import { ScrollView } from "react-native-gesture-handler"
 import Recommend from "../Components/Recommend/Recommend"
 import config from '../../config'
+import BarandList from "../Components/BrandFilter/BarandList"
 
 const Home = ({ navigation }) => {
 
@@ -21,20 +22,19 @@ const Home = ({ navigation }) => {
     Alert.alert(
       "هشدار",
       "خطا در ارتباط با سرور",
-      [
-        {
-          text: "خروج",
-          onPress: () => BackHandler.exitApp(),
-          style: "cancel"
-        },
-        {
-          text: "دوباره امتحان کن", onPress: () => {
-            navigation.reset({
-              index: 1,
-              routes: [{ name: 'Home' }],
-            })
-          }
+      [{
+        text: "خروج",
+        onPress: () => BackHandler.exitApp(),
+        style: "cancel"
+      },
+      {
+        text: "دوباره امتحان کن", onPress: () => {
+          navigation.reset({
+            index: 1,
+            routes: [{ name: 'Home' }],
+          })
         }
+      }
       ],
       { cancelable: false },
     )
@@ -45,9 +45,15 @@ const Home = ({ navigation }) => {
     })
   }
 
+  const filterBrands = Brand => {
+    return data.filter(result => {
+      return result.Brand === Brand
+    })
+  }
 
 
-  // console.log(filterResults("LapTop"))
+
+  //console.log(filterBrands("Samsung"))
   return (
     <View style={{ flex: 1 }}>
       {isLoading ? (
@@ -62,7 +68,7 @@ const Home = ({ navigation }) => {
             </Text>
             </View>
             <ScrollView>
-              <View style={{ marginBottom: 100 }}>
+              <View >
                 <Recommend
                   title="موبایل های پیشنهادی ..."
                   result={filterResults("Mobile")}
@@ -75,6 +81,17 @@ const Home = ({ navigation }) => {
                   title="دوربین های پیشنهادی ..."
                   result={filterResults("Camera")}
                 />
+                <BarandList
+                  title="برندهای پیشنهادی ..."
+                  Huawei={filterBrands("Huawei")}
+                  Panasonic={filterBrands("Panasinic")}
+                  parsKhazar={filterBrands("ParsKhazar")}
+                  Acer={filterBrands("Acer")}
+                  Philips={filterBrands("Philips")}
+                  Xiaomi={filterBrands("Xiaomi")}
+                />
+
+
               </View>
             </ScrollView>
           </View>
@@ -106,6 +123,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   Container: {
-    backgroundColor: '#fbf3ee'
+    backgroundColor: '#fbf3ee',
+    flex: 1
   }
 })

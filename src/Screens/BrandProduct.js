@@ -7,16 +7,14 @@ import {
     ScrollView,
     TouchableOpacity,
     Alert
-}
-    from "react-native"
+} from 'react-native'
 import { useRoute } from "@react-navigation/native"
 import AsyncStorage from '@react-native-community/async-storage'
 import Context from '../../Context'
 import Carousel from 'react-native-snap-carousel'
-import CategoriImages from "../Components/Categori/CategoriImages"
+//import CategoriImages from "../Components/Categori/CategoriImages"
 
-const CategoriProduct = ({ navigation }) => {
-
+const BrandProduct = ({ navigation }) => {
     const { addCart } = useContext(Context)
 
     const [Token, setToken] = useState()
@@ -31,7 +29,6 @@ const CategoriProduct = ({ navigation }) => {
     const detail = route.params.detail
     const item = route.params.item
     const picturs = route.params.picturs
-    //console.log(picturs)
 
     useEffect(() => {
         if (item.stock === null) {
@@ -58,8 +55,6 @@ const CategoriProduct = ({ navigation }) => {
         )
 
     AsyncStorage.getItem("token").then(token => setToken(token))
-    //console.log(Token)
-
     return (
         <View>
             <ScrollView>
@@ -116,7 +111,8 @@ const CategoriProduct = ({ navigation }) => {
         </View>
     )
 }
-export default CategoriProduct
+
+export default BrandProduct
 
 const styles = StyleSheet.create({
     TextStyle: {

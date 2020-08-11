@@ -26,17 +26,7 @@ const styles = StyleSheet.create({
     fontFamily: "Sans",
     marginRight: 12,
   },
-  FlatList: {
-    alignItems: "center",
-    justifyContent: "center",
-    margin: 20,
-  },
-  image: {
-    width: 100,
-    height: 100,
-    borderColor: "red",
-    borderWidth: 1,
-  },
+
   View: {
     borderColor: 'black',
     borderBottomWidth: 1

@@ -43,7 +43,7 @@ const Profile = () => {
   //Image not read my Api
 
   return (
-    <View style={{ backgroundColor: '#e1e1e1' }}>
+    <View style={{ backgroundColor: '#e1e1e1', flex: 1 }}>
       <ScrollView>
         <View style={styles.profileTextView}>
           <Text style={styles.profileText}>پروفایل کاربر</Text>
@@ -152,9 +152,9 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
   ViewText: {
-    alignSelf: "center",
+    alignItems: "center",
     marginRight: -22,
-    flexDirection: "row",
+    // flexDirection: "row",
   },
   ViewText2: {
     flexDirection: "row",

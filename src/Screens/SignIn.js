@@ -47,6 +47,7 @@ const Signin = () => {
             value={email}
             onChangeText={text => setEmail(text)}
             autoCapitalize="none"
+            keyboardType="email-address"
             style={styles.TextInputstyle}
           />
         </View>
@@ -73,7 +74,6 @@ const Signin = () => {
         <TouchableOpacity
           style={styles.button}
           onPress={async () => {
-
             await signin({ email, password })
             await tokenAssignment()
           }}

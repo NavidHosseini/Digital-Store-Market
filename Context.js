@@ -75,7 +75,7 @@ export const Provider = ({ children }) => {
 
           await AsyncStorage.setItem("token", res.jwt);
         })
-        .catch(err => console.log(err));
+        .catch(err => alert('اشکال در ایمیل و پسورد'));
     } catch (err) {
 
     }

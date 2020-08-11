@@ -11,11 +11,8 @@ import CartItemComponent from "../Components/cart/CartItemComponent"
 
 
 const Cart = () => {
+
   const { cartProduct } = useContext(Context)
-
-
-
-
   return (
     <View style={styles.View}>
       <FlatList
@@ -27,6 +24,7 @@ const Cart = () => {
           )
         }}
       />
+
 
       <TouchableOpacity
         style={styles.paymentButton}
