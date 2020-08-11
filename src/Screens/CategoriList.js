@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { StyleSheet, View, ScrollView, ActivityIndicator } from "react-native"
+import { StyleSheet, View, ScrollView, ActivityIndicator,BackHandler } from "react-native"
 
 import CategoriComponent from "../Components/Categori/CategoriComponent"
 
@@ -15,11 +15,33 @@ const CategoriList = () => {
     fetch(`${config.BASE_URL}/categories`)
       .then(response => response.json())
       .then(json => setData(json))
-      .catch(error => console.error(error))
+      .catch(error => ButtonAlert())
       .finally(() => setLoading(false))
 
   }, [])
-
+  
+  const ButtonAlert = () =>
+    Alert.alert(
+      "هشدار",
+      "خطا در ارتباط با سرور",
+      [
+        {
+          text: "خروج",
+          onPress: () => BackHandler.exitApp(),
+          style: "cancel"
+        },
+        {
+          text: "دوباره امتحان کن", onPress: () => {
+            navigation.reset({
+              index: 1,
+              routes: [{ name: 'Home' }],
+            })
+          }
+        }
+      ],
+      { cancelable: false },
+    )
+  
   const filterResults = name => {
     return data.filter(result => {
       return result.name === name
