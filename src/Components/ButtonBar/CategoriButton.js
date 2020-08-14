@@ -5,14 +5,17 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 import { useNavigation } from '@react-navigation/native'
 
-const CategoriButton = ({ tintColor }) => {
+const CategoriButton = ({ tintColor, focused }) => {
+
+  const activeButton = 35
+  const inactiveButton = 30
 
   const navigation = useNavigation()
 
   return (
     <View>
       <TouchableOpacity onPress={() => navigation.navigate('Categori')}>
-        <MaterialCommunityIcons name="layers-outline" style={{ fontSize: 30 }} color={tintColor} />
+        <MaterialCommunityIcons name="layers-outline" size={focused ? activeButton : inactiveButton} color={tintColor} />
       </TouchableOpacity>
     </View>
   )
