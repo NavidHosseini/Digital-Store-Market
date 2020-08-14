@@ -25,7 +25,7 @@ const Signin = () => {
     const token = await AsyncStorage.getItem("token")
     setToken(token)
     if (Token) {
-      navigation.navigate('Profile')
+      navigation.push('Profile')
     }
   }
 
