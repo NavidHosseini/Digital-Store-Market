@@ -12,7 +12,7 @@ import { useRoute } from "@react-navigation/native"
 import AsyncStorage from '@react-native-community/async-storage'
 import Context from '../../Context'
 import Carousel from 'react-native-snap-carousel'
-//import CategoriImages from "../Components/Categori/CategoriImages"
+import BrandImages from "../Components/BrandFilter/BrandImages"
 
 const BrandProduct = ({ navigation }) => {
     const { addCart } = useContext(Context)
@@ -68,7 +68,7 @@ const BrandProduct = ({ navigation }) => {
                         keyExtractor={() => Math.floor(Math.random() * 9999).toString()}
                         renderItem={({ item }) => {
                             return (
-                                <CategoriImages data={item} />
+                                <BrandImages data={item} />
                             )
                         }}
                     />

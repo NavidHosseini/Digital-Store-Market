@@ -5,6 +5,7 @@ import Feather from "react-native-vector-icons/Feather"
 
 import { useNavigation } from "@react-navigation/native"
 
+
 const ProfileButton = ({ tintColor, focused }) => {
 
   // console.log(tintColor)
@@ -14,7 +15,12 @@ const ProfileButton = ({ tintColor, focused }) => {
 
   return (
     <View>
-      <TouchableOpacity onPress={() => navigation.navigate("SignIn")}>
+      <TouchableOpacity onPress={() => {
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'SignIn' }],
+        })
+      }}>
         <Feather name="user" size={focused ? activeButton : inactiveButton} color={tintColor} />
       </TouchableOpacity>
     </View>

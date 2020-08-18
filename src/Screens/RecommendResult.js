@@ -68,7 +68,7 @@ const RecommendResult = ({ navigation }) => {
           <View style={{ alignItems: 'center' }}>
             <Carousel
               layout='tinder'
-              layoutCardOffset={50}
+              layoutCardOffset={30}
               sliderWidth={300}
               itemWidth={300}
               data={picturs}

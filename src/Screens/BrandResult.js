@@ -6,7 +6,7 @@ import BrandResultComponent from '../Components/BrandFilter/BrandResultComponent
 const BrandResult = () => {
     const route = useRoute()
     const data = route.params.data
-    console.log(data)
+    //console.log(data)
     return (
         <View>
             <FlatList

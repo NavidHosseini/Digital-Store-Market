@@ -84,7 +84,7 @@ const Home = ({ navigation }) => {
                 <BarandList
                   title="برندهای پیشنهادی ..."
                   Huawei={filterBrands("Huawei")}
-                  Panasonic={filterBrands("Panasinic")}
+                  Panasonic={filterBrands("Panasonic")}
                   parsKhazar={filterBrands("ParsKhazar")}
                   Acer={filterBrands("Acer")}
                   Philips={filterBrands("Philips")}

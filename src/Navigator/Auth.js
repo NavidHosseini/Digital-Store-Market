@@ -4,20 +4,11 @@ import Signin from "../Screens/SignIn"
 import SignUp from "../Screens/SignUp"
 import Profile from "../Screens/Profile"
 import EditProfile from "../Screens/EditProfile"
-//import AsyncStorage from '@react-native-community/async-storage';
 
 
 const Auth = () => {
     const Stack = createStackNavigator()
-    // const [Token, setToken] = useState();
 
-    // const tokenAssignment = async () => {
-    //     const token = await AsyncStorage.getItem("token")
-    //     setToken(token)
-    // }
-    // useEffect(() => {
-    //     tokenAssignment()
-    // });
 
     return (
         <Stack.Navigator>
