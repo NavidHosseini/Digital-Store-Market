@@ -85,7 +85,7 @@ const Home = ({ navigation }) => {
                   title="برندهای پیشنهادی ..."
                   Huawei={filterBrands("Huawei")}
                   Panasonic={filterBrands("Panasonic")}
-                  parsKhazar={filterBrands("ParsKhazar")}
+                  ParsKhazar={filterBrands("ParsKhazar")}
                   Acer={filterBrands("Acer")}
                   Philips={filterBrands("Philips")}
                   Xiaomi={filterBrands("Xiaomi")}

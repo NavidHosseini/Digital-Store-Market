@@ -6,6 +6,7 @@ import {
   View,
   Text,
   ScrollView,
+
 } from "react-native"
 import Context from "../../Context"
 import AsyncStorage from '@react-native-community/async-storage'
@@ -18,6 +19,8 @@ const Signin = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [Token, setToken] = useState()
+
+
 
   const { signin } = useContext(Context)
 
@@ -33,6 +36,10 @@ const Signin = () => {
   useEffect(() => {
     tokenAssignment()
   })
+
+
+
+
 
   return (
 
@@ -89,9 +96,12 @@ const Signin = () => {
         </TouchableOpacity>
       </View>
     </ScrollView>
-
   )
 }
+
+
+
+
 
 export default Signin
 

@@ -12,6 +12,7 @@ const Auth = () => {
 
     return (
         <Stack.Navigator>
+
             <Stack.Screen name="SignIn" component={Signin} options={{ headerShown: false }} />
             <Stack.Screen name="SignUp" component={SignUp} options={{ headerShown: false }} />
             <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false }} />

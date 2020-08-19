@@ -16,6 +16,13 @@ const CartItemComponent = ({ item }) => {
   return (
     <View style={styles.View}>
       <View style={styles.View2} >
+
+        <TouchableOpacity
+          style={styles.trash}
+          onPress={() => deleteCart(item.id)} >
+          <FontAwesome name="trash" style={styles.icon} />
+        </TouchableOpacity>
+
         <Image
           style={styles.image}
           source={{ uri: `${config.BASE_URL}${item.url}` }}
@@ -24,17 +31,18 @@ const CartItemComponent = ({ item }) => {
         <Text style={styles.Text}>
           {item.title.slice(0, 10)}.... : محصول
         </Text>
+
+
       </View>
       <Text style={styles.Text2} >
         قیمت: {item.price}
       </Text>
 
-      <TouchableOpacity
+      {/* <TouchableOpacity
         style={styles.trash}
-        onPress={() => deleteCart(item.id)}
-      >
+        onPress={() => deleteCart(item.id)} >
         <FontAwesome name="trash" style={styles.icon} />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
   )
 }
@@ -70,10 +78,12 @@ const styles = StyleSheet.create({
   },
   trash: {
     alignItems: "center",
-    backgroundColor: "#fc9572",
+    justifyContent: 'center',
+    //backgroundColor: "#fc9572",
     marginHorizontal: 10
   },
   icon: {
-    fontSize: 38
+    fontSize: 38,
+
   }
 })

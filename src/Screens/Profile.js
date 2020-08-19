@@ -5,7 +5,8 @@ import {
   View,
   TouchableOpacity,
   Image,
-  ScrollView
+  ScrollView,
+  ActivityIndicator
 } from "react-native"
 
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons"
@@ -18,6 +19,7 @@ const Profile = () => {
 
   const navigation = useNavigation()
   const [data, setData] = useState({})
+  const [isLoading, setLoading] = useState(true)
 
 
   useEffect(() => {
@@ -35,6 +37,7 @@ const Profile = () => {
         .then(response => response.json())
         .then(json => setData(json))
         .catch(error => console.log(error))
+        .finally(() => setLoading(false))
     }
 
     dataFetch()
@@ -43,77 +46,86 @@ const Profile = () => {
   //Image not read my Api
 
   return (
-    <View style={{ backgroundColor: '#e1e1e1', flex: 1 }}>
-      <ScrollView>
-        <View style={styles.profileTextView}>
-          <Text style={styles.profileText}>پروفایل کاربر</Text>
+    <>
+      {isLoading ? (
+        <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}>
+          <ActivityIndicator size="large" />
         </View>
-        <View style={styles.View}>
-          <View >
-            <View style={styles.ViewImage}>
-              <Image
-                style={styles.image}
-                source={{ uri: 'https://preview.keenthemes.com/metronic-v4/theme/assets/pages/media/profile/profile_user.jpg' }} />
-            </View>
-            <View style={styles.ViewText} >
+      ) : (
+          <View style={{ backgroundColor: '#e1e1e1', flex: 1 }}>
+            <ScrollView>
+              <View style={styles.profileTextView}>
+                <Text style={styles.profileText}>پروفایل کاربر</Text>
+              </View>
+              <View style={styles.View}>
+                <View >
+                  <View style={styles.ViewImage}>
+                    <Image
+                      style={styles.image}
+                      source={{ uri: 'https://preview.keenthemes.com/metronic-v4/theme/assets/pages/media/profile/profile_user.jpg' }} />
+                  </View>
+                  <View style={styles.ViewText} >
 
-              <Text style={styles.profilename}>
-                نام و نام خانوادگی :
+                    <Text style={styles.profilename}>
+                      نام و نام خانوادگی :
                 {`${data.name} ${data.family}`}
-              </Text>
-            </View>
+                    </Text>
+                  </View>
 
-          </View>
-          <View style={styles.ViewText2}>
-            <Text style={styles.email}>ایمیل : {data.email}</Text>
+                </View>
+                <View style={styles.ViewText2}>
+                  <Text style={styles.email}>ایمیل : {data.email}</Text>
 
-          </View>
-          <View style={styles.ViewText2} >
+                </View>
+                <View style={styles.ViewText2} >
 
-            <Text style={styles.email}>شماره موبایل : {data.PhoneNumber}</Text>
-          </View>
-          <View style={styles.ViewText2}>
+                  <Text style={styles.email}>شماره موبایل : {data.PhoneNumber}</Text>
+                </View>
+                <View style={styles.ViewText2}>
 
-            <Text style={styles.email}>کد پستی : {data.PostalCode}</Text>
-          </View>
-          <View style={styles.ViewText2}>
+                  <Text style={styles.email}>کد پستی : {data.PostalCode}</Text>
+                </View>
+                <View style={styles.ViewText2}>
 
-            <Text style={styles.email}>آدرس : {data.Address}</Text>
-          </View>
-          <View style={styles.ViewText2} >
-            <TouchableOpacity style={styles.ViewIcon}
+                  <Text style={styles.email}>آدرس : {data.Address}</Text>
+                </View>
+                <View style={styles.ViewText2} >
+                  <TouchableOpacity style={styles.ViewIcon}
 
-              onPress={() => navigation.navigate('EditProfile', {
-                id: data.id,
-                name: data.name,
-                family: data.family,
-                email: data.email,
-                PhoneNumber: data.PhoneNumber,
-                PostalCode: data.PostalCode,
-                Address: data.Address
-              })}>
+                    onPress={() => navigation.navigate('EditProfile', {
+                      id: data.id,
+                      name: data.name,
+                      family: data.family,
+                      email: data.email,
+                      PhoneNumber: data.PhoneNumber,
+                      PostalCode: data.PostalCode,
+                      Address: data.Address
+                    })}>
 
-              <MaterialCommunityIcons name="pencil" style={styles.icon} />
-              <Text style={styles.profilename}>
-                ویرایش پروفایل
+                    <MaterialCommunityIcons name="pencil" style={styles.icon} />
+                    <Text style={styles.profilename}>
+                      ویرایش پروفایل
             </Text>
-            </TouchableOpacity>
+                  </TouchableOpacity>
+                </View>
+              </View>
+              <TouchableOpacity
+                onPress={async () => {
+                  await AsyncStorage.clear(),
+                    navigation.reset({
+                      index: 0,
+                      routes: [{ name: 'SignIn' }],
+                    });
+                }}
+                style={styles.exitButton}
+              >
+                <Text style={styles.exitButtonText}>خروج</Text>
+              </TouchableOpacity>
+            </ScrollView>
           </View>
-        </View>
-        <TouchableOpacity
-          onPress={async () => {
-            await AsyncStorage.clear(),
-              navigation.reset({
-                index: 0,
-                routes: [{ name: 'SignIn' }],
-              });
-          }}
-          style={styles.exitButton}
-        >
-          <Text style={styles.exitButtonText}>خروج</Text>
-        </TouchableOpacity>
-      </ScrollView>
-    </View>
+        )}
+
+    </>
   )
 }
 
