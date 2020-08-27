@@ -2,13 +2,7 @@ import React from 'react'
 import { StyleSheet, Text, View, Image } from 'react-native'
 import BrandComponent from './BrandComponent'
 
-const Barand = ({ title,
-    Huawei,
-    Panasonic,
-    ParsKhazar,
-    Acer,
-    Philips,
-    Xiaomi }) => {
+const Barand = ({ title, Huawei, Panasonic, ParsKhazar, Acer, Philips, Xiaomi }) => {
     return (
         <View style={styles.View}>
             <Text style={styles.text}>{title}</Text>

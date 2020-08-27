@@ -5,7 +5,6 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { useNavigation } from '@react-navigation/native'
 
 const CategoriComponent = ({ name, iconname, data }) => {
-
   const navigation = useNavigation()
 
   return (

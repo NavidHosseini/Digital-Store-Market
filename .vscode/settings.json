@@ -1,0 +1,7 @@
+{
+    "launch": {
+        "colorize.enable_search_variables BOOLEAN _default": true,
+        "configurations": [],
+        "compounds": []
+    }
+}

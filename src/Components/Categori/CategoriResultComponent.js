@@ -9,7 +9,7 @@ const CategoriResultComponent = ({ item }) => {
 
   const [StockNull, setStockNull] = useState('')
   const [StockTrue, setStockTrue] = useState('')
-
+  //console.log(item.price)
 
   useEffect(() => {
     if (item.stock === null) {

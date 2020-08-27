@@ -29,7 +29,7 @@ const Signin = () => {
     setToken(token)
     if (Token) {
       //navigate not working
-      navigation.push('Profile')
+      navigation.replace('Profile')
     }
   }
 
@@ -98,10 +98,6 @@ const Signin = () => {
     </ScrollView>
   )
 }
-
-
-
-
 
 export default Signin
 

@@ -90,8 +90,6 @@ const Home = ({ navigation }) => {
                   Philips={filterBrands("Philips")}
                   Xiaomi={filterBrands("Xiaomi")}
                 />
-
-
               </View>
             </ScrollView>
           </View>
