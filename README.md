@@ -1,6 +1,6 @@
 # React Native Digital Store Market
 
-This is a sample todo app redux built with React Native 
+This is a sample Digital Store Market built with React Native 
 
 <div>
 <img style="margin: 20" src="https://up.20script.ir/file/90fe-Screenshot-1599321727.png" width="250" height="450">
